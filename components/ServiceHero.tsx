@@ -85,12 +85,9 @@ export default function ServiceHero() {
       {/* Overall dark tint */}
       <div className="absolute inset-0 bg-black/35" />
 
-      {/* Panel group — centered, not full width */}
-      <div className="absolute inset-0 flex items-center justify-center z-20 px-4">
-        <div
-          className="flex w-full"
-          style={{ maxWidth: 960, height: 440 }}
-        >
+      {/* ── DESKTOP: 3 panels side by side, centered, not full width ── */}
+      <div className="hidden sm:flex absolute inset-0 items-center justify-center z-20 px-4">
+        <div className="flex w-full" style={{ maxWidth: 960, height: 440 }}>
           {PANELS.map((panel, i) => {
             const isActive = i === active
             return (
@@ -101,15 +98,12 @@ export default function ServiceHero() {
                 style={{
                   border: '1px solid rgba(255,255,255,0.25)',
                   marginLeft: i > 0 ? -1 : 0,
-                  background: isActive
-                    ? 'rgba(15, 40, 55, 0.72)'
-                    : 'rgba(0, 0, 0, 0.12)',
+                  background: isActive ? 'rgba(15,40,55,0.72)' : 'rgba(0,0,0,0.12)',
                   backdropFilter: isActive ? 'blur(6px)' : 'none',
                   zIndex: isActive ? 1 : 0,
                 }}
               >
                 {isActive ? (
-                  /* Active: label + title + body + cta */
                   <div className="flex flex-col h-full animate-fadeIn">
                     <div>
                       <p className="text-white/70 text-xs font-semibold tracking-[0.25em] uppercase mb-3">
@@ -133,17 +127,12 @@ export default function ServiceHero() {
                         {panel.cta}
                         <span className="transition-transform group-hover:translate-x-1">→</span>
                       </Link>
-                      {/* Progress bar */}
                       <div className="h-px w-8 bg-white/20 overflow-hidden">
-                        <span
-                          className="block h-full bg-gold transition-none"
-                          style={{ width: `${progress}%` }}
-                        />
+                        <span className="block h-full bg-gold transition-none" style={{ width: `${progress}%` }} />
                       </div>
                     </div>
                   </div>
                 ) : (
-                  /* Inactive: just the large ghost title */
                   <div className="flex items-start h-full">
                     <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
                       {panel.ghost.split('\n').map((line, j) => (
@@ -158,7 +147,72 @@ export default function ServiceHero() {
         </div>
       </div>
 
-      {/* Phone bottom-right */}
+      {/* ── MOBILE: one panel at a time, centered, not full width ── */}
+      <div className="flex sm:hidden absolute inset-0 items-center justify-center z-20 px-8">
+        {PANELS.map((panel, i) =>
+          i !== active ? null : (
+            <div
+              key={panel.id}
+              className="flex flex-col justify-between w-full animate-fadeIn"
+              style={{
+                maxWidth: 320,
+                height: 380,
+                border: '1px solid rgba(255,255,255,0.25)',
+                background: 'rgba(15,40,55,0.72)',
+                backdropFilter: 'blur(6px)',
+                padding: '1.75rem',
+              }}
+            >
+              <div>
+                <p className="text-white/70 text-xs font-semibold tracking-[0.25em] uppercase mb-3">
+                  {panel.label}
+                </p>
+                <h2 className="text-2xl font-bold italic text-white leading-tight mb-3">
+                  {panel.title.split('\n').map((line, j) => (
+                    <span key={j} className="block">{line}</span>
+                  ))}
+                </h2>
+                <p className="text-white/75 text-sm leading-relaxed">
+                  {panel.body}
+                </p>
+              </div>
+              <div className="flex items-center justify-between">
+                <Link
+                  href={panel.href}
+                  className="inline-flex items-center gap-1.5 text-white text-sm font-semibold italic hover:text-gold transition-colors group"
+                >
+                  {panel.cta}
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+                {/* Dot navigation */}
+                <div className="flex items-center gap-2">
+                  {PANELS.map((_, di) => (
+                    <button
+                      key={di}
+                      onClick={() => handlePanelClick(di)}
+                      className="relative h-px rounded-full overflow-hidden transition-all duration-300"
+                      style={{
+                        width: di === active ? 28 : 10,
+                        background: 'rgba(255,255,255,0.25)',
+                      }}
+                      aria-label={`Panel ${di + 1}`}
+                    >
+                      {di === active && (
+                        <span
+                          className="absolute inset-y-0 left-0 bg-gold transition-none"
+                          style={{ width: `${progress}%` }}
+                        />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )
+        )}
+      </div>
+
+      {/* Phone — desktop only */}
       <a
         href="tel:7703772063"
         className="absolute bottom-6 right-6 text-white/60 text-xs font-medium hover:text-gold transition-colors z-20 hidden sm:block"
