@@ -65,7 +65,7 @@ export default function ServiceHero() {
   return (
     <section className="relative h-screen min-h-[600px] overflow-hidden">
 
-      {/* Full-bleed background images — crossfade on active change */}
+      {/* Full-bleed background images — crossfade */}
       {PANELS.map((panel, i) => (
         <div
           key={panel.id}
@@ -82,105 +82,78 @@ export default function ServiceHero() {
         </div>
       ))}
 
-      {/* Overlays */}
-      <div className="absolute inset-0 bg-black/30" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/75" />
+      {/* Subtle overall dark tint */}
+      <div className="absolute inset-0 bg-black/20" />
 
-      {/* Upper hero text — visible above the panels */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center pb-64 z-10 pointer-events-none">
-        <p className="text-gold text-xs font-semibold tracking-[0.25em] uppercase mb-4">
-          Industrial CRE Specialist · Greater Atlanta
-        </p>
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white text-center leading-tight">
-          {"Atlanta's Industrial"}
-          <br />
-          <span className="text-gold">Real Estate Expert</span>
-        </h1>
-      </div>
+      {/* Left panel column — not full width */}
+      <div className="absolute left-0 top-0 bottom-0 w-[340px] lg:w-[400px] flex flex-col z-20">
 
-      {/* 3 panels — anchored to the bottom */}
-      <div className="absolute bottom-0 left-0 right-0 flex border-t border-white/15 z-20">
         {PANELS.map((panel, i) => {
           const isActive = i === active
           return (
             <button
               key={panel.id}
               onClick={() => handlePanelClick(i)}
-              className={`
-                relative flex-1 flex flex-col justify-between
-                px-6 lg:px-10 pt-6 pb-5
-                border-r border-white/10 last:border-r-0
-                cursor-pointer text-left transition-all duration-500
-                ${isActive ? 'bg-black/55 backdrop-blur-sm' : 'bg-black/30 hover:bg-black/45'}
-              `}
+              className="relative flex flex-col justify-center px-8 lg:px-10 border-b border-white/10 last:border-b-0 cursor-pointer text-left transition-all duration-500"
+              style={{
+                flex: isActive ? 3 : 1,
+                background: isActive ? 'rgba(0,0,0,0.62)' : 'rgba(0,0,0,0.38)',
+                backdropFilter: isActive ? 'blur(4px)' : 'blur(2px)',
+              }}
             >
-              {/* Gold left accent on active */}
+              {/* Top gold accent bar on active */}
               {isActive && (
-                <div className="absolute left-0 inset-y-0 w-0.5 bg-gold" />
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gold" />
               )}
 
-              <div>
-                {isActive ? (
-                  <div className="animate-fadeIn">
-                    <p className="text-gold text-[10px] font-semibold tracking-[0.25em] uppercase mb-2">
-                      {panel.label}
-                    </p>
-                    <h2 className="text-xl lg:text-2xl font-bold italic text-white leading-snug mb-3">
-                      {panel.title.split('\n').map((line, j) => (
-                        <span key={j} className="block">{line}</span>
-                      ))}
-                    </h2>
-                    <p className="text-gray-300 text-xs leading-relaxed mb-4 max-w-[220px]">
-                      {panel.body}
-                    </p>
-                  </div>
-                ) : (
-                  <h2 className="text-lg lg:text-xl font-bold text-white/40 leading-snug mt-6">
-                    {panel.ghost}
+              {isActive ? (
+                <div className="animate-fadeIn py-6">
+                  <p className="text-gold text-[10px] font-semibold tracking-[0.25em] uppercase mb-3">
+                    {panel.label}
+                  </p>
+                  <h2 className="text-2xl lg:text-3xl font-bold italic text-white leading-snug mb-3">
+                    {panel.title.split('\n').map((line, j) => (
+                      <span key={j} className="block">{line}</span>
+                    ))}
                   </h2>
-                )}
-              </div>
-
-              {/* Bottom row: CTA + progress */}
-              <div className="flex items-center justify-between mt-2">
-                {isActive ? (
-                  <Link
-                    href={panel.href}
-                    onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center gap-1.5 text-white text-xs font-semibold italic hover:text-gold transition-colors group"
-                  >
-                    {panel.cta}
-                    <span className="transition-transform group-hover:translate-x-1">→</span>
-                  </Link>
-                ) : (
-                  <span />
-                )}
-
-                {/* Per-panel progress bar */}
-                <div
-                  className="h-0.5 rounded-full overflow-hidden transition-all duration-300"
-                  style={{ width: isActive ? 40 : 16, background: 'rgba(255,255,255,0.2)' }}
-                >
-                  {isActive && (
-                    <span
-                      className="block h-full bg-gold transition-none"
-                      style={{ width: `${progress}%` }}
-                    />
-                  )}
+                  <p className="text-gray-300 text-sm leading-relaxed mb-5 max-w-[260px]">
+                    {panel.body}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <Link
+                      href={panel.href}
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 text-white text-xs font-semibold italic hover:text-gold transition-colors group"
+                    >
+                      {panel.cta}
+                      <span className="transition-transform group-hover:translate-x-1">→</span>
+                    </Link>
+                    {/* Progress bar */}
+                    <div className="h-0.5 w-10 rounded-full overflow-hidden bg-white/20">
+                      <span
+                        className="block h-full bg-gold transition-none"
+                        style={{ width: `${progress}%` }}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <h2 className="text-base lg:text-lg font-bold text-white/40 py-1">
+                  {panel.ghost}
+                </h2>
+              )}
             </button>
           )
         })}
+
+        {/* Phone number at very bottom of panel column */}
+        <div className="bg-black/50 backdrop-blur-sm px-8 lg:px-10 py-3 border-t border-white/10">
+          <a href="tel:7703772063" className="text-gold text-xs font-medium hover:text-gold-300 transition-colors">
+            (770) 377-2063
+          </a>
+        </div>
       </div>
 
-      {/* Phone — bottom-right above panels */}
-      <a
-        href="tel:7703772063"
-        className="absolute bottom-[calc(var(--panel-h,180px)+16px)] right-6 text-gold text-xs font-medium hover:text-gold-300 transition-colors z-20 hidden sm:block"
-      >
-        (770) 377-2063
-      </a>
     </section>
   )
 }
