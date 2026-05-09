@@ -37,16 +37,28 @@ const ANIMATIONS = [
       </svg>
     ),
   },
+  {
+    id: 'panels',
+    label: 'Panels',
+    description: 'Service panels',
+    icon: (
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+        <rect x="3" y="3" width="5" height="18" rx="1" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="10" y="3" width="5" height="18" rx="1" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="17" y="3" width="4" height="18" rx="1" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
 ]
 
 export default function ThemeSwitcher() {
   const [currentTheme, setCurrentTheme] = useState('verdant')
-  const [currentAnim,  setCurrentAnim]  = useState<'particles' | 'skyline'>('particles')
+  const [currentAnim,  setCurrentAnim]  = useState<'particles' | 'skyline' | 'panels'>('particles')
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
     setCurrentTheme(localStorage.getItem('trinity-theme') ?? 'verdant')
-    setCurrentAnim((localStorage.getItem('trinity-animation') ?? 'particles') as 'particles' | 'skyline')
+    setCurrentAnim((localStorage.getItem('trinity-animation') ?? 'particles') as 'particles' | 'skyline' | 'panels')
   }, [])
 
   function applyTheme(id: string) {
@@ -59,7 +71,7 @@ export default function ThemeSwitcher() {
     setCurrentTheme(id)
   }
 
-  function applyAnimation(id: 'particles' | 'skyline') {
+  function applyAnimation(id: 'particles' | 'skyline' | 'panels') {
     localStorage.setItem('trinity-animation', id)
     setCurrentAnim(id)
     window.dispatchEvent(new CustomEvent('animationchange', { detail: id }))
@@ -106,7 +118,7 @@ export default function ThemeSwitcher() {
             {ANIMATIONS.map((anim) => (
               <button
                 key={anim.id}
-                onClick={() => applyAnimation(anim.id as 'particles' | 'skyline')}
+                onClick={() => applyAnimation(anim.id as 'particles' | 'skyline' | 'panels')}
                 className={`flex-1 flex flex-col items-center gap-1.5 rounded-xl py-2.5 px-2 text-center transition-all cursor-pointer ${
                   currentAnim === anim.id
                     ? 'bg-gray-100 ring-1 ring-gray-300 text-gray-700'
