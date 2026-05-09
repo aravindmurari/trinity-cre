@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  /* Default theme: Verdant (forest green + gold) */
   --color-navy-50: #E8F5EE;
   --color-navy-100: #BBDFC8;
   --color-navy-200: #7EC8A0;
@@ -21,6 +22,47 @@
   --color-gold-500: #A8872E;
   --color-gold-600: #876820;
   --color-gold: #C9A84C;
+}
+
+/* Midnight theme: deep navy + gold */
+[data-theme="midnight"] {
+  --color-navy-50: #E8EDF5;
+  --color-navy-100: #C5D0E3;
+  --color-navy-200: #9CAEC9;
+  --color-navy-300: #738BAF;
+  --color-navy-400: #4A6894;
+  --color-navy-500: #2A4875;
+  --color-navy-600: #1A3055;
+  --color-navy-700: #162436;
+  --color-navy-800: #0F1B2D;
+  --color-navy-900: #080F1A;
+  --color-navy: #0F1B2D;
+  /* gold unchanged */
+}
+
+/* Onyx theme: near-black charcoal + emerald */
+[data-theme="onyx"] {
+  --color-navy-50: #F0F4F2;
+  --color-navy-100: #D0E4DA;
+  --color-navy-200: #9EC8B4;
+  --color-navy-300: #6BAD8E;
+  --color-navy-400: #3D8F6A;
+  --color-navy-500: #1E5C41;
+  --color-navy-600: #14422F;
+  --color-navy-700: #0E2D20;
+  --color-navy-800: #081A12;
+  --color-navy-900: #040D09;
+  --color-navy: #081A12;
+
+  /* Emerald replaces gold as the accent */
+  --color-gold-50: #ECFDF5;
+  --color-gold-100: #D1FAE5;
+  --color-gold-200: #A7F3D0;
+  --color-gold-300: #34D399;
+  --color-gold-400: #10B981;
+  --color-gold-500: #059669;
+  --color-gold-600: #047857;
+  --color-gold: #10B981;
 }
 
 html {

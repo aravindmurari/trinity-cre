@@ -10,7 +10,18 @@ interface Particle {
   radius: number
 }
 
-function randomBetween(min: number, max: number): number {
+const THEME_COLORS: Record<string, [number, number, number]> = {
+  verdant:  [82,  183, 136],
+  midnight: [201, 168, 76],
+  onyx:     [16,  185, 129],
+}
+
+function getParticleColor(): [number, number, number] {
+  const theme = document.documentElement.getAttribute('data-theme') ?? 'verdant'
+  return THEME_COLORS[theme] ?? THEME_COLORS.verdant
+}
+
+function randomBetween(min: number, max: number) {
   return Math.random() * (max - min) + min
 }
 
@@ -32,7 +43,6 @@ export default function HeroCanvas() {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
@@ -43,14 +53,13 @@ export default function HeroCanvas() {
     let animationId: number
     let width = 0
     let height = 0
+    let color = getParticleColor()
 
     function resize() {
-      if (!canvas) return
-      width = canvas.offsetWidth
-      height = canvas.offsetHeight
-      canvas.width = width
-      canvas.height = height
-      // Re-clamp existing particles inside new bounds
+      width = canvas!.offsetWidth
+      height = canvas!.offsetHeight
+      canvas!.width = width
+      canvas!.height = height
       particles.forEach((p) => {
         if (p.x > width) p.x = Math.random() * width
         if (p.y > height) p.y = Math.random() * height
@@ -59,16 +68,13 @@ export default function HeroCanvas() {
 
     function init() {
       resize()
-      particles = Array.from({ length: PARTICLE_COUNT }, () =>
-        createParticle(width, height)
-      )
+      particles = Array.from({ length: PARTICLE_COUNT }, () => createParticle(width, height))
     }
 
     function draw() {
-      if (!ctx) return
-      ctx.clearRect(0, 0, width, height)
+      ctx!.clearRect(0, 0, width, height)
+      const [r, g, b] = color
 
-      // Draw connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x
@@ -76,22 +82,21 @@ export default function HeroCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy)
           if (dist < CONNECTION_DISTANCE) {
             const alpha = (1 - dist / CONNECTION_DISTANCE) * 0.25
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(82, 183, 136, ${alpha})`
-            ctx.lineWidth = 1
-            ctx.stroke()
+            ctx!.beginPath()
+            ctx!.moveTo(particles[i].x, particles[i].y)
+            ctx!.lineTo(particles[j].x, particles[j].y)
+            ctx!.strokeStyle = `rgba(${r},${g},${b},${alpha})`
+            ctx!.lineWidth = 1
+            ctx!.stroke()
           }
         }
       }
 
-      // Draw particles
       particles.forEach((p) => {
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(82, 183, 136, 0.7)'
-        ctx.fill()
+        ctx!.beginPath()
+        ctx!.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
+        ctx!.fillStyle = `rgba(${r},${g},${b},0.7)`
+        ctx!.fill()
       })
     }
 
@@ -115,20 +120,21 @@ export default function HeroCanvas() {
     const handleResize = () => resize()
     window.addEventListener('resize', handleResize)
 
+    // Update particle color when theme changes
+    const observer = new MutationObserver(() => {
+      color = getParticleColor()
+    })
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
+
     init()
     loop()
 
     return () => {
       cancelAnimationFrame(animationId)
       window.removeEventListener('resize', handleResize)
+      observer.disconnect()
     }
   }, [])
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
-      aria-hidden="true"
-    />
-  )
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" aria-hidden="true" />
 }
