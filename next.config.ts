@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  // Uncomment if deploying to a subdirectory (e.g. username.github.io/trinity-cre):
-  // basePath: '/trinity-cre',
+  // Remove basePath if using a custom domain
+  basePath: '/trinity-cre',
 }
 
 export default nextConfig
