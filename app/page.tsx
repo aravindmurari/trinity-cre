@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { listings } from '@/data/listings'
 import { insights } from '@/data/insights'
-import HeroCanvas from '@/components/HeroCanvas'
+import AnimatedHero from '@/components/AnimatedHero'
 
 export default function HomePage() {
   const featuredListings = listings.slice(0, 3)
@@ -12,7 +12,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative min-h-screen flex items-center bg-navy-800 overflow-hidden">
         {/* Particle network background */}
-        <HeroCanvas />
+        <AnimatedHero />
 
         {/* Gradient overlay - fades bottom into section below */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy-800/60 pointer-events-none" />
