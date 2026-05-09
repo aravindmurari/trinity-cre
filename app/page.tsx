@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { listings } from '@/data/listings'
 import { insights } from '@/data/insights'
+import HeroCanvas from '@/components/HeroCanvas'
 
 export default function HomePage() {
   const featuredListings = listings.slice(0, 3)
@@ -9,53 +10,67 @@ export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-navy-800 min-h-[600px] flex items-center relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage:
-              'repeating-linear-gradient(45deg, #C9A84C 0, #C9A84C 1px, transparent 0, transparent 50%)',
-            backgroundSize: '30px 30px',
-          }}
-        />
-        {/* Replace section background with a real property photo from Burke when available */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <section className="relative min-h-screen flex items-center bg-navy-800 overflow-hidden">
+        {/* Particle network background */}
+        <HeroCanvas />
+
+        {/* Gradient overlay - fades bottom into section below */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-navy-800/60 pointer-events-none" />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-navy-700 border border-gold/30 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-1.5 h-1.5 bg-gold rounded-full" />
-              <span className="text-gold text-xs font-medium tracking-wide uppercase">
+            <div className="inline-flex items-center gap-2 bg-navy-700/60 backdrop-blur-sm border border-green-500/30 rounded-full px-4 py-1.5 mb-8">
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: 'rgba(82, 183, 136, 0.9)' }} />
+              <span className="text-green-300 text-xs font-medium tracking-wide uppercase">
                 Industrial CRE Specialist - Greater Atlanta
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
               {"Atlanta's Industrial"}
               <br />
               <span className="text-gold">Real Estate Expert</span>
             </h1>
-            <p className="text-gray-300 text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl">
+
+            <p className="text-gray-300 text-xl leading-relaxed mb-10 max-w-2xl">
               Helping tenants, buyers, and investors navigate Greater Atlanta&apos;s industrial market with
               data-driven strategy and 38 years of Trinity CRE expertise behind every deal.
             </p>
+
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/listings"
-                className="bg-gold text-navy-800 font-semibold px-8 py-3.5 rounded text-center hover:bg-gold-300 transition-colors"
+                className="bg-gold text-navy-800 font-semibold px-8 py-4 rounded-xl text-center hover:bg-gold-300 transition-colors"
               >
                 View Listings
               </Link>
               <Link
                 href="/contact"
-                className="border border-white/30 text-white font-semibold px-8 py-3.5 rounded text-center hover:border-white/60 hover:bg-white/5 transition-colors"
+                className="border border-white/30 text-white font-semibold px-8 py-4 rounded-xl text-center hover:border-white/60 hover:bg-white/5 transition-colors backdrop-blur-sm"
               >
                 Schedule a Consultation
               </Link>
             </div>
           </div>
         </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/40">
+          <span className="text-xs tracking-widest uppercase">Scroll</span>
+          <svg
+            className="w-5 h-5 animate-bounce"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
       </section>
 
       {/* Stats strip */}
-      <section className="bg-navy-700 border-y border-navy-600">
+      <section className="bg-navy-700/80 backdrop-blur-sm border-y border-navy-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10 text-sm text-gray-300 text-center">
             <span>38 Years of Trinity CRE Legacy</span>
@@ -103,9 +118,9 @@ export default function HomePage() {
             ].map((service) => (
               <div
                 key={service.title}
-                className="bg-gray-50 border border-gray-100 rounded-lg p-6 hover:shadow-md transition-shadow"
+                className="bg-gray-50 border border-gray-100 rounded-xl p-6 hover:border-green-200 hover:shadow-lg hover:shadow-green-50 transition-all"
               >
-                <div className="w-10 h-10 bg-navy-800/10 rounded-lg flex items-center justify-center text-navy-800 mb-4">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center text-navy-800 mb-4" style={{ background: 'rgba(10, 49, 30, 0.08)' }}>
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={service.iconPath} />
                   </svg>
@@ -113,7 +128,7 @@ export default function HomePage() {
                 <h3 className="font-semibold text-navy-800 text-lg mb-2">{service.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">{service.description}</p>
                 <Link href="/services" className="text-gold font-medium text-sm hover:text-gold-500 transition-colors">
-                  Learn more →
+                  Learn more &rarr;
                 </Link>
               </div>
             ))}
@@ -122,7 +137,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Listings */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20" style={{ background: 'rgba(10, 49, 30, 0.03)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-10">
             <div>
@@ -130,7 +145,7 @@ export default function HomePage() {
               <p className="text-gray-600">Available industrial properties in Greater Atlanta</p>
             </div>
             <Link href="/listings" className="hidden sm:inline-flex text-gold font-medium text-sm hover:text-gold-500">
-              View all listings →
+              View all listings &rarr;
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -138,7 +153,7 @@ export default function HomePage() {
               <Link
                 key={listing.slug}
                 href={`/listings/${listing.slug}`}
-                className="group bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
+                className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
               >
                 {/* Swap for real property photos */}
                 <div className="h-48 bg-navy-700 flex items-center justify-center relative">
@@ -178,7 +193,7 @@ export default function HomePage() {
           </div>
           <div className="text-center mt-8 sm:hidden">
             <Link href="/listings" className="text-gold font-medium text-sm">
-              View all listings →
+              View all listings &rarr;
             </Link>
           </div>
         </div>
@@ -189,7 +204,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Swap for Burke's headshot */}
-            <div className="bg-gray-100 rounded-lg h-80 flex items-center justify-center order-2 md:order-1">
+            <div className="bg-gray-100 rounded-xl h-80 flex items-center justify-center order-2 md:order-1">
               <div className="text-center text-gray-400">
                 <svg className="w-16 h-16 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -208,7 +223,7 @@ export default function HomePage() {
                 Data-Driven. Locally Rooted. Industrially Focused.
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Burke brings an analytical edge to commercial real estate -- a background in biological engineering and
+                Burke brings an analytical edge to commercial real estate - a background in biological engineering and
                 healthcare informatics means he approaches every deal with precision, not just intuition.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
@@ -217,7 +232,7 @@ export default function HomePage() {
               </p>
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 bg-navy-800 text-white font-semibold px-6 py-3 rounded hover:bg-navy-700 transition-colors"
+                className="inline-flex items-center gap-2 bg-navy-800 text-white font-semibold px-6 py-3 rounded-xl hover:bg-navy-700 transition-colors"
               >
                 Meet Burke
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -238,14 +253,14 @@ export default function HomePage() {
               <p className="text-gray-600">Atlanta industrial market analysis and tenant resources</p>
             </div>
             <Link href="/insights" className="hidden sm:inline-flex text-gold font-medium text-sm hover:text-gold-500">
-              All insights →
+              All insights &rarr;
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {recentInsights.map((insight) => (
               <div
                 key={insight.slug}
-                className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
+                className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <span className="bg-gold/10 text-gold-600 text-xs font-medium px-2.5 py-1 rounded-full">
@@ -271,13 +286,13 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="tel:7703772063"
-              className="border border-white/30 text-white font-semibold px-8 py-3.5 rounded hover:border-white/60 hover:bg-white/5 transition-colors"
+              className="border border-white/30 text-white font-semibold px-8 py-4 rounded-xl hover:border-white/60 hover:bg-white/5 transition-colors"
             >
               (770) 377-2063
             </a>
             <Link
               href="/contact"
-              className="bg-gold text-navy-800 font-semibold px-8 py-3.5 rounded hover:bg-gold-300 transition-colors"
+              className="bg-gold text-navy-800 font-semibold px-8 py-4 rounded-xl hover:bg-gold-300 transition-colors"
             >
               Schedule a Consultation
             </Link>
