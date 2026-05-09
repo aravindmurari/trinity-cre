@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react'
 
 const THEMES = [
-  { id: 'verdant',  label: 'Verdant',  bg: '#0A311E', accent: '#C9A84C', description: 'Forest green + gold' },
+  { id: 'slate',    label: 'Slate',    bg: '#1E2A35', accent: '#E8A030', description: 'Steel blue + amber' },
   { id: 'midnight', label: 'Midnight', bg: '#0F1B2D', accent: '#C9A84C', description: 'Navy + gold' },
-  { id: 'onyx',     label: 'Onyx',     bg: '#081A12', accent: '#10B981', description: 'Charcoal + emerald' },
+  { id: 'copper',   label: 'Copper',   bg: '#18130E', accent: '#C4774A', description: 'Charcoal + copper' },
 ]
 
 const ANIMATIONS = [
@@ -62,7 +62,7 @@ export default function ThemeSwitcher() {
   }, [])
 
   function applyTheme(id: string) {
-    if (id === 'verdant') {
+    if (id === 'slate') {
       document.documentElement.removeAttribute('data-theme')
     } else {
       document.documentElement.setAttribute('data-theme', id)

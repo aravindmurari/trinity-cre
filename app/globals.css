@@ -1,27 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  /* Default theme: Verdant (forest green + gold) */
-  --color-navy-50: #E8F5EE;
-  --color-navy-100: #BBDFC8;
-  --color-navy-200: #7EC8A0;
-  --color-navy-300: #4DAF7C;
-  --color-navy-400: #2D9660;
-  --color-navy-500: #1A7A4A;
-  --color-navy-600: #145F38;
-  --color-navy-700: #0E4429;
-  --color-navy-800: #0A311E;
-  --color-navy-900: #061D11;
-  --color-navy: #0A311E;
+  /* Default theme: Slate (industrial blue-gray + amber) */
+  --color-navy-50: #E0EBF0;
+  --color-navy-100: #BDD3E0;
+  --color-navy-200: #8AADC0;
+  --color-navy-300: #6A879E;
+  --color-navy-400: #4F6A82;
+  --color-navy-500: #3A5068;
+  --color-navy-600: #2E4055;
+  --color-navy-700: #253545;
+  --color-navy-800: #1E2A35;
+  --color-navy-900: #0D1520;
+  --color-navy: #1E2A35;
 
-  --color-gold-50: #FDF8EC;
-  --color-gold-100: #F9EEC8;
-  --color-gold-200: #F2DB8A;
-  --color-gold-300: #D4B866;
-  --color-gold-400: #C9A84C;
-  --color-gold-500: #A8872E;
-  --color-gold-600: #876820;
-  --color-gold: #C9A84C;
+  --color-gold-50: #FEF3E2;
+  --color-gold-100: #FCDBA8;
+  --color-gold-200: #F8C06A;
+  --color-gold-300: #F0A83A;
+  --color-gold-400: #E8A030;
+  --color-gold-500: #C07E1A;
+  --color-gold-600: #995F0E;
+  --color-gold: #E8A030;
 }
 
 /* Midnight theme: deep navy + gold */
@@ -37,32 +37,41 @@
   --color-navy-800: #0F1B2D;
   --color-navy-900: #080F1A;
   --color-navy: #0F1B2D;
-  /* gold unchanged */
+
+  /* Pin gold so it's unaffected by base theme changes */
+  --color-gold-50: #FDF8EC;
+  --color-gold-100: #F9EEC8;
+  --color-gold-200: #F2DB8A;
+  --color-gold-300: #D4B866;
+  --color-gold-400: #C9A84C;
+  --color-gold-500: #A8872E;
+  --color-gold-600: #876820;
+  --color-gold: #C9A84C;
 }
 
-/* Onyx theme: near-black charcoal + emerald */
-[data-theme="onyx"] {
-  --color-navy-50: #F0F4F2;
-  --color-navy-100: #D0E4DA;
-  --color-navy-200: #9EC8B4;
-  --color-navy-300: #6BAD8E;
-  --color-navy-400: #3D8F6A;
-  --color-navy-500: #1E5C41;
-  --color-navy-600: #14422F;
-  --color-navy-700: #0E2D20;
-  --color-navy-800: #081A12;
-  --color-navy-900: #040D09;
-  --color-navy: #081A12;
+/* Copper theme: dark warm charcoal + copper/bronze */
+[data-theme="copper"] {
+  --color-navy-50: #EDE8E3;
+  --color-navy-100: #D0C4B8;
+  --color-navy-200: #AC9880;
+  --color-navy-300: #886D50;
+  --color-navy-400: #6A4E30;
+  --color-navy-500: #4E3520;
+  --color-navy-600: #352415;
+  --color-navy-700: #22170D;
+  --color-navy-800: #18130E;
+  --color-navy-900: #0D0A07;
+  --color-navy: #18130E;
 
-  /* Emerald replaces gold as the accent */
-  --color-gold-50: #ECFDF5;
-  --color-gold-100: #D1FAE5;
-  --color-gold-200: #A7F3D0;
-  --color-gold-300: #34D399;
-  --color-gold-400: #10B981;
-  --color-gold-500: #059669;
-  --color-gold-600: #047857;
-  --color-gold: #10B981;
+  /* Copper replaces gold as the accent */
+  --color-gold-50: #FAF0E8;
+  --color-gold-100: #F0D4B8;
+  --color-gold-200: #E0AE88;
+  --color-gold-300: #CF8A5C;
+  --color-gold-400: #C4774A;
+  --color-gold-500: #A05C32;
+  --color-gold-600: #7A4220;
+  --color-gold: #C4774A;
 }
 
 html {
