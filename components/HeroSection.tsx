@@ -9,7 +9,7 @@ import ServiceHero from './ServiceHero'
 type AnimationType = 'particles' | 'skyline' | 'panels'
 
 export default function HeroSection() {
-  const [animation, setAnimation] = useState<AnimationType>('particles')
+  const [animation, setAnimation] = useState<AnimationType>('panels')
 
   useEffect(() => {
     const saved = localStorage.getItem('trinity-animation') as AnimationType | null

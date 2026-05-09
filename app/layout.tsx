@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Restore saved theme before first paint to prevent flash */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('trinity-theme');if(t&&t!=='verdant')document.documentElement.setAttribute('data-theme',t)}catch(e){}`,
+            __html: `try{var t=localStorage.getItem('trinity-theme')||'midnight';if(t!=='verdant')document.documentElement.setAttribute('data-theme',t)}catch(e){}`,
           }}
         />
       </head>

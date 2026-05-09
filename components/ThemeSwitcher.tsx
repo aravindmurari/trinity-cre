@@ -52,13 +52,13 @@ const ANIMATIONS = [
 ]
 
 export default function ThemeSwitcher() {
-  const [currentTheme, setCurrentTheme] = useState('verdant')
-  const [currentAnim,  setCurrentAnim]  = useState<'particles' | 'skyline' | 'panels'>('particles')
+  const [currentTheme, setCurrentTheme] = useState('midnight')
+  const [currentAnim,  setCurrentAnim]  = useState<'particles' | 'skyline' | 'panels'>('panels')
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    setCurrentTheme(localStorage.getItem('trinity-theme') ?? 'verdant')
-    setCurrentAnim((localStorage.getItem('trinity-animation') ?? 'particles') as 'particles' | 'skyline' | 'panels')
+    setCurrentTheme(localStorage.getItem('trinity-theme') ?? 'midnight')
+    setCurrentAnim((localStorage.getItem('trinity-animation') ?? 'panels') as 'particles' | 'skyline' | 'panels')
   }, [])
 
   function applyTheme(id: string) {
