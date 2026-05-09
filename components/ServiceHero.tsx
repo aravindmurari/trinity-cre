@@ -16,7 +16,7 @@ const PANELS = [
   },
   {
     id: 'industrial',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=80',
+    image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1600&q=80',
     ghost: 'Industrial',
     label: 'WE KNOW',
     title: 'Industrial',
@@ -26,7 +26,7 @@ const PANELS = [
   },
   {
     id: 'investment',
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1600&q=80',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80',
     ghost: 'Investment\nSales',
     label: 'WE KNOW',
     title: 'Investment\nSales',
