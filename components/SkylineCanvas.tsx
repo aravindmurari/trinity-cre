@@ -47,7 +47,7 @@ function generateSkyline(cw: number, ch: number): Building[] {
     const bw   = Math.floor(Math.random() * 55 + 32)
     const mid  = x + bw / 2
     const dist = Math.abs(mid - cx) / (cx + 1)
-    const maxH = ch * 0.58 * (1 - dist * 0.42)
+    const maxH = ch * 0.42 * (1 - dist * 0.35)
     const bh   = Math.floor(Math.random() * maxH * 0.55 + maxH * 0.45)
 
     const cols   = Math.max(1, Math.floor((bw - WIN_PX * 2 + WIN_GX) / (WIN_W + WIN_GX)))
@@ -129,11 +129,19 @@ export default function SkylineCanvas() {
         }
       }
 
-      const grd = ctx!.createLinearGradient(0, ch * 0.75, 0, ch)
-      grd.addColorStop(0, 'transparent')
-      grd.addColorStop(1, `rgba(${r},${g},${b},0.04)`)
-      ctx!.fillStyle = grd
+      // Ground glow
+      const groundGrd = ctx!.createLinearGradient(0, ch * 0.75, 0, ch)
+      groundGrd.addColorStop(0, 'transparent')
+      groundGrd.addColorStop(1, `rgba(${r},${g},${b},0.04)`)
+      ctx!.fillStyle = groundGrd
       ctx!.fillRect(0, ch * 0.75, cw, ch * 0.25)
+
+      // Top fade — buildings dissolve before reaching the text area
+      const topGrd = ctx!.createLinearGradient(0, 0, 0, ch * 0.65)
+      topGrd.addColorStop(0, 'rgba(0,0,0,0.55)')
+      topGrd.addColorStop(1, 'transparent')
+      ctx!.fillStyle = topGrd
+      ctx!.fillRect(0, 0, cw, ch * 0.65)
     }
 
     function loop() { update(); draw(); animId = requestAnimationFrame(loop) }
