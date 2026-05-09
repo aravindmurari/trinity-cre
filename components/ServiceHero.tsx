@@ -6,6 +6,7 @@ import Link from 'next/link'
 const PANELS = [
   {
     id: 'tenant-rep',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80',
     ghost: 'Tenant\nRep',
     label: 'WE KNOW',
     title: 'Tenant\nRepresentation',
@@ -15,6 +16,7 @@ const PANELS = [
   },
   {
     id: 'industrial',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=80',
     ghost: 'Industrial',
     label: 'WE KNOW',
     title: 'Industrial',
@@ -24,6 +26,7 @@ const PANELS = [
   },
   {
     id: 'investment',
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1600&q=80',
     ghost: 'Investment\nSales',
     label: 'WE KNOW',
     title: 'Investment\nSales',
@@ -33,18 +36,17 @@ const PANELS = [
   },
 ]
 
+const INTERVAL = 5000
+
 export default function ServiceHero() {
   const [active, setActive] = useState(1)
   const [progress, setProgress] = useState(0)
-
-  const INTERVAL = 5000
 
   const advance = useCallback(() => {
     setActive((p) => (p + 1) % PANELS.length)
     setProgress(0)
   }, [])
 
-  // Auto-rotate
   useEffect(() => {
     const tick = setInterval(() => {
       setProgress((p) => {
@@ -61,27 +63,27 @@ export default function ServiceHero() {
   }
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
-      {/*
-        Background: Replace this gradient with a real industrial property photo.
-        e.g. style={{ backgroundImage: "url('/hero-photo.jpg')" }}
-      */}
-      <div
-        className="absolute inset-0 bg-navy-900"
-        style={{
-          backgroundImage:
-            'radial-gradient(ellipse at 30% 60%, rgba(255,255,255,0.03) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.02) 0%, transparent 50%)',
-        }}
-      />
-      {/* Subtle grid texture */}
-      <div
-        className="absolute inset-0 opacity-[0.04]"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)',
-          backgroundSize: '80px 80px',
-        }}
-      />
+    <section className="relative h-[82vh] min-h-[540px] flex flex-col overflow-hidden">
+
+      {/* Background images — crossfade on active change */}
+      {PANELS.map((panel, i) => (
+        <div
+          key={panel.id}
+          className="absolute inset-0 transition-opacity duration-700"
+          style={{ opacity: i === active ? 1 : 0 }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={panel.image}
+            alt=""
+            className="w-full h-full object-cover"
+            draggable={false}
+          />
+        </div>
+      ))}
+
+      {/* Dark overlay so text is always readable */}
+      <div className="absolute inset-0 bg-navy-900/70" />
 
       {/* 3-panel columns */}
       <div className="relative flex-1 flex">
@@ -92,35 +94,34 @@ export default function ServiceHero() {
               key={panel.id}
               onClick={() => handlePanelClick(i)}
               className={`
-                relative flex-1 flex flex-col justify-center px-8 lg:px-12 py-20
+                relative flex-1 flex flex-col justify-center px-7 lg:px-10 py-12
                 border-r border-white/10 last:border-r-0
                 transition-all duration-700 ease-in-out cursor-pointer text-left
-                ${!isActive ? 'hover:bg-white/[0.03]' : ''}
+                ${!isActive ? 'hover:bg-white/[0.04]' : ''}
               `}
             >
-              {/* Active overlay */}
+              {/* Active panel darkening + blur */}
               {isActive && (
-                <div className="absolute inset-0 bg-navy-800/70 backdrop-blur-sm transition-opacity duration-700" />
+                <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px] transition-opacity duration-700" />
               )}
 
-              {/* Left accent bar on active */}
+              {/* Left gold accent bar */}
               {isActive && (
                 <div className="absolute left-0 top-1/4 bottom-1/4 w-0.5 bg-gold" />
               )}
 
               <div className="relative z-10">
                 {isActive ? (
-                  /* Active panel: full content */
                   <div className="animate-fadeIn">
-                    <p className="text-gold text-xs font-semibold tracking-[0.25em] uppercase mb-4">
+                    <p className="text-gold text-xs font-semibold tracking-[0.25em] uppercase mb-3">
                       {panel.label}
                     </p>
-                    <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold italic text-white leading-tight mb-5">
+                    <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold italic text-white leading-tight mb-4">
                       {panel.title.split('\n').map((line, j) => (
                         <span key={j} className="block">{line}</span>
                       ))}
                     </h2>
-                    <p className="text-gray-300 text-base leading-relaxed mb-8 max-w-xs">
+                    <p className="text-gray-300 text-sm leading-relaxed mb-6 max-w-xs">
                       {panel.body}
                     </p>
                     <Link
@@ -133,8 +134,7 @@ export default function ServiceHero() {
                     </Link>
                   </div>
                 ) : (
-                  /* Ghost panel: just the title */
-                  <h2 className="text-3xl lg:text-4xl font-bold text-white/40 leading-tight">
+                  <h2 className="text-2xl lg:text-3xl font-bold text-white/35 leading-tight">
                     {panel.ghost.split('\n').map((line, j) => (
                       <span key={j} className="block">{line}</span>
                     ))}
@@ -146,8 +146,8 @@ export default function ServiceHero() {
         })}
       </div>
 
-      {/* Bottom bar: progress dots + phone */}
-      <div className="relative flex items-center justify-between px-8 lg:px-12 py-5 border-t border-white/10">
+      {/* Bottom bar */}
+      <div className="relative flex items-center justify-between px-7 lg:px-10 py-4 border-t border-white/10">
         <div className="flex items-center gap-3">
           {PANELS.map((_, i) => (
             <button
