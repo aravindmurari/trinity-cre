@@ -44,12 +44,12 @@ const ANIMATIONS = [
 ]
 
 export default function ThemeSwitcher() {
-  const [currentTheme, setCurrentTheme] = useState('midnight')
+  const [currentTheme, setCurrentTheme] = useState('grove')
   const [currentAnim,  setCurrentAnim]  = useState<'particles' | 'panels'>('panels')
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('trinity-theme') ?? 'midnight'
+    const savedTheme = localStorage.getItem('trinity-theme') ?? 'grove'
     setCurrentTheme(savedTheme)
     applyTheme(savedTheme)
     setCurrentAnim((localStorage.getItem('trinity-animation') ?? 'panels') as 'particles' | 'panels')

@@ -22,7 +22,7 @@ export default function Header() {
 
   useEffect(() => {
     const check = () => {
-      const t = localStorage.getItem('trinity-theme') ?? 'midnight'
+      const t = localStorage.getItem('trinity-theme') ?? 'grove'
       setIsGreenTheme(GREEN_THEMES.has(t))
     }
     check()
