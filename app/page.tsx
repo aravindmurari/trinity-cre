@@ -26,54 +26,65 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services Preview */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-navy-800 mb-3">How We Can Help</h2>
-            <p className="text-gray-600 max-w-xl mx-auto">
-              Industrial real estate transactions are complex. We bring the local market knowledge and analytical rigor
-              to get your deal done right.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                title: 'Tenant Representation',
-                description:
-                  'Find the right industrial space for your business. We negotiate leases on your behalf, with no conflict of interest.',
-                iconPath:
-                  'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
-              },
-              {
-                title: 'Buyer Representation',
-                description:
-                  'Acquire industrial assets with confidence. We identify opportunities, conduct due diligence, and negotiate favorable terms.',
-                iconPath: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
-              },
-              {
-                title: 'Investment Sales',
-                description:
-                  'Sell your industrial asset at maximum value. We connect sellers with qualified buyers and manage complex transactions.',
-                iconPath: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
-              },
-            ].map((service) => (
-              <div
-                key={service.title}
-                className="bg-gray-50 border border-gray-100 rounded-xl p-6 hover:border-green-200 hover:shadow-lg hover:shadow-green-50 transition-all"
-              >
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center text-navy-800 mb-4" style={{ background: 'rgba(10, 49, 30, 0.08)' }}>
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={service.iconPath} />
-                  </svg>
+      {/* About Trinity CRE */}
+      <section className="bg-navy-900 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-5" style={{ minHeight: 580 }}>
+
+            {/* Content */}
+            <div className="lg:col-span-3 flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-20 relative">
+              <span className="absolute right-0 top-1/2 -translate-y-1/2 text-[10rem] font-bold text-white/[0.03] select-none pointer-events-none leading-none hidden lg:block">
+                TCRE
+              </span>
+              <p className="text-gold text-[11px] font-bold tracking-[0.25em] uppercase mb-6">
+                About Trinity CRE Group
+              </p>
+              <h2 className="text-4xl lg:text-5xl font-bold text-white leading-[1.1] mb-6">
+                Data-Driven.<br />
+                <em className="text-gold not-italic">Locally Rooted.</em><br />
+                Industrially Focused.
+              </h2>
+              <p className="text-gray-400 leading-relaxed mb-10 max-w-lg" style={{ fontSize: 15 }}>
+                Burke brings a rare analytical edge to commercial real estate. A background in biological engineering
+                and healthcare informatics means every deal is built on data and precision, not just intuition.
+              </p>
+              <div className="flex gap-10 mb-10 pt-8 border-t border-white/10">
+                <div>
+                  <div className="text-3xl font-bold text-gold">38</div>
+                  <div className="text-[10px] text-gray-500 uppercase tracking-widest mt-1.5">Years of Legacy</div>
                 </div>
-                <h3 className="font-semibold text-navy-800 text-lg mb-2">{service.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">{service.description}</p>
-                <Link href="/services" className="text-gold font-medium text-sm hover:text-gold-500 transition-colors">
-                  Learn more &rarr;
-                </Link>
+                <div className="border-l border-white/10 pl-10">
+                  <div className="text-xl font-bold text-white leading-none">ATL</div>
+                  <div className="text-[10px] text-gray-500 uppercase tracking-widest mt-1.5">Industrial Market</div>
+                </div>
+                <div className="border-l border-white/10 pl-10">
+                  <div className="text-xl font-bold text-white leading-none">KW</div>
+                  <div className="text-[10px] text-gray-500 uppercase tracking-widest mt-1.5">Commercial</div>
+                </div>
               </div>
-            ))}
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 bg-gold text-navy-900 font-semibold px-6 py-3 rounded text-sm hover:opacity-90 transition-opacity self-start"
+              >
+                About Us
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+
+            {/* Photo — bleeds to right edge */}
+            <div className="hidden lg:block lg:col-span-2 relative">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80"
+                alt="Burke Doggett"
+                className="absolute inset-0 w-full h-full object-cover object-top"
+              />
+              <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-navy-900 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-navy-900/70 to-transparent" />
+            </div>
+
           </div>
         </div>
       </section>
@@ -97,8 +108,10 @@ export default function HomePage() {
                 href={`/listings/${listing.slug}`}
                 className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
               >
-                {/* Swap for real property photos */}
-                <div className="h-48 bg-navy-700 flex items-center justify-center relative">
+                <div className="h-48 relative overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={listing.image} alt={listing.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-black/10" />
                   <div className="absolute top-3 left-3">
                     <span
                       className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
@@ -108,14 +121,6 @@ export default function HomePage() {
                       {listing.type}
                     </span>
                   </div>
-                  <svg className="w-12 h-12 text-navy-500 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1}
-                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                    />
-                  </svg>
                 </div>
                 <div className="p-5">
                   <p className="text-xs text-gray-400 mb-1">{listing.propertyType}</p>
@@ -137,51 +142,6 @@ export default function HomePage() {
             <Link href="/listings" className="text-gold font-medium text-sm">
               View all listings &rarr;
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* About Teaser */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Swap for Burke's headshot */}
-            <div className="bg-gray-100 rounded-xl h-80 flex items-center justify-center order-2 md:order-1">
-              <div className="text-center text-gray-400">
-                <svg className="w-16 h-16 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1}
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-                <p className="text-sm">Photo coming soon</p>
-              </div>
-            </div>
-            <div className="order-1 md:order-2">
-              <p className="text-gold font-semibold text-sm uppercase tracking-wide mb-3">About Trinity CRE</p>
-              <h2 className="text-3xl font-bold text-navy-800 mb-4">
-                Data-Driven. Locally Rooted. Industrially Focused.
-              </h2>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                Burke brings an analytical edge to commercial real estate - a background in biological engineering and
-                healthcare informatics means he approaches every deal with precision, not just intuition.
-              </p>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Burke leads Trinity CRE Group, combining 38 years of trusted client relationships and deep Atlanta
-                industrial market expertise with a rigorous, data-driven approach to every deal.
-              </p>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 bg-navy-800 text-white font-semibold px-6 py-3 rounded-xl hover:bg-navy-700 transition-colors"
-              >
-                About Us
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
           </div>
         </div>
       </section>

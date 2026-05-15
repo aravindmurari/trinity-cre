@@ -17,6 +17,7 @@ const navLinks = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [isGreenTheme, setIsGreenTheme] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const check = () => {
@@ -28,8 +29,18 @@ export default function Header() {
     return () => window.removeEventListener('themechange', check)
   }, [])
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <header className="bg-navy-800/95 backdrop-blur-md sticky top-0 z-50 border-b border-navy-700">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled ? 'backdrop-blur-md border-white/10' : 'backdrop-blur-sm border-white/10'}`}
+      style={{ backgroundColor: scrolled ? 'color-mix(in srgb, var(--color-navy-800) 95%, transparent)' : 'color-mix(in srgb, var(--color-navy-800) 50%, transparent)' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3 flex-shrink-0">
@@ -43,19 +54,14 @@ export default function Header() {
                 priority
               />
             ) : (
-              <>
-                <div className="w-8 h-8 bg-gold rounded-sm flex items-center justify-center relative overflow-hidden">
-                  <svg viewBox="0 0 32 32" className="w-full h-full" fill="none">
-                    <rect x="6" y="8" width="20" height="3" rx="1" fill="#0A311E" />
-                    <rect x="14.5" y="11" width="3" height="14" rx="1" fill="#0A311E" />
-                    <ellipse cx="16" cy="24.5" rx="2" ry="1.2" fill="#0A311E" opacity="0.5" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-white font-bold text-sm leading-tight">Trinity CRE Group</div>
-                  <div className="text-gold text-xs leading-tight">Industrial CRE Specialists</div>
-                </div>
-              </>
+              <Image
+                src="/trinity-cre/logo-tcre-white.png"
+                alt="Trinity CRE"
+                width={140}
+                height={56}
+                className="h-11 w-auto object-contain"
+                priority
+              />
             )}
           </Link>
 

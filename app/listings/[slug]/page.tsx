@@ -44,19 +44,9 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             <div className="lg:col-span-2">
-              {/* Swap for actual property photos from Burke */}
-              <div className="bg-gray-100 rounded-lg h-72 flex items-center justify-center mb-6">
-                <div className="text-center text-gray-400">
-                  <svg className="w-16 h-16 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1}
-                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                    />
-                  </svg>
-                  <p className="text-sm">Property photos coming soon</p>
-                </div>
+              <div className="rounded-lg h-72 overflow-hidden mb-6">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={listing.image} alt={listing.title} className="w-full h-full object-cover" />
               </div>
 
               <div className="flex items-start justify-between gap-4 mb-6">

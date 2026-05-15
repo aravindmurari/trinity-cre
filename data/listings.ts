@@ -12,6 +12,7 @@ export interface Listing {
   features: string[]
   propertyType: string
   status: 'Available' | 'Under Contract' | 'Sold'
+  image: string
 }
 
 export const listings: Listing[] = [
@@ -37,6 +38,7 @@ export const listings: Listing[] = [
     ],
     propertyType: 'Warehouse / Distribution',
     status: 'Available',
+    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1200&q=80',
   },
   {
     slug: 'marietta-distribution-center',
@@ -60,6 +62,7 @@ export const listings: Listing[] = [
     ],
     propertyType: 'Distribution Center',
     status: 'Available',
+    image: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=1200&q=80',
   },
   {
     slug: 'peachtree-corners-flex',
@@ -83,5 +86,6 @@ export const listings: Listing[] = [
     ],
     propertyType: 'Flex / R&D',
     status: 'Available',
+    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1200&q=80',
   },
 ]

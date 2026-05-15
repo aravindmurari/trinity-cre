@@ -71,8 +71,10 @@ function ListingCard({ listing }: { listing: Listing }) {
       href={`/listings/${listing.slug}`}
       className="group bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow"
     >
-      {/* Swap for real property photos */}
-      <div className="h-52 bg-navy-700 flex items-center justify-center relative">
+      <div className="h-52 relative overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={listing.image} alt={listing.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <div className="absolute inset-0 bg-black/10" />
         <div className="absolute top-3 left-3 flex gap-2">
           <span
             className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
@@ -87,14 +89,6 @@ function ListingCard({ listing }: { listing: Listing }) {
             </span>
           )}
         </div>
-        <svg className="w-12 h-12 text-navy-500 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1}
-            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-          />
-        </svg>
       </div>
       <div className="p-5">
         <p className="text-xs text-gray-400 mb-1">{listing.propertyType}</p>
