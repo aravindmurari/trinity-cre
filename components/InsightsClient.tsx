@@ -146,7 +146,7 @@ export default function InsightsClient({ insights }: { insights: Insight[] }) {
             Stay Informed
           </p>
           <h2 className="text-2xl font-bold text-white mb-2">
-            Get The Trinity Brief in Your Inbox
+            Get Trinity Brief in Your Inbox
           </h2>
           <p className="text-gray-300 mb-6 max-w-md mx-auto text-sm">
             Atlanta industrial market updates, tenant guides, and investment insights -- delivered

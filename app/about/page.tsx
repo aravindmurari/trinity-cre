@@ -12,10 +12,10 @@ export default function AboutPage() {
     <>
       <section className="bg-navy-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-gold font-semibold text-sm uppercase tracking-wide mb-3">About</p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Burke Doggett</h1>
+          <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">About</p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">About Trinity CRE Group</h1>
           <p className="text-gray-300 text-lg max-w-2xl">
-            Industrial CRE specialist at KW Commercial. Carrying forward the Trinity CRE legacy in Greater Atlanta.
+            Industrial CRE specialists at KW Commercial, serving the Greater Atlanta market with a data-driven, client-first approach.
           </p>
         </div>
       </section>
@@ -23,55 +23,56 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            <div className="rounded-lg h-96 overflow-hidden md:sticky md:top-24">
+            <div className="rounded-2xl h-96 overflow-hidden md:sticky md:top-24">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80"
-                alt="Burke Doggett"
+                alt="Trinity CRE Group"
                 className="w-full h-full object-cover object-top"
               />
             </div>
 
             <div>
-              <h2 className="text-2xl font-bold text-navy-800 mb-6">A Different Kind of CRE Broker</h2>
+              <h2 className="text-2xl font-bold text-navy-800 mb-6">A Different Kind of Industrial Brokerage</h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  Most commercial real estate brokers came up through sales. Burke Doggett took a different path -- a
-                  B.S. in Biological Engineering from the University of Georgia and a Master's in Healthcare Management
-                  and Informatics from Kennesaw State University trained him to think analytically, evaluate data
-                  critically, and solve complex problems. That rigor shows in how he approaches every transaction.
+                  Most commercial real estate firms came up through traditional sales. Trinity CRE Group takes a
+                  different approach -- grounded in analytical rigor, data-driven decision-making, and a deep
+                  understanding of the industrial asset class. That foundation shapes how we approach every
+                  transaction, from initial market survey to final negotiations.
                 </p>
                 <p>
-                  Burke specializes in industrial real estate in the Greater Atlanta metro, where the market moves fast
-                  and deal terms matter. Whether you are a tenant negotiating a lease, a buyer acquiring an asset, or an
-                  investor evaluating a sale-leaseback, you need a broker who understands the numbers as well as the
-                  market.
+                  We specialize exclusively in industrial real estate across the Greater Atlanta metro, where the
+                  market moves fast and deal terms matter. Whether you are a tenant negotiating a lease, a buyer
+                  acquiring an asset, or an investor evaluating a sale-leaseback, you need an advisor who
+                  understands the numbers as well as the market.
                 </p>
                 <p>
-                  Burke operates as a commercial realtor at KW Commercial / Keller Williams Realty Chattahoochee North,
-                  one of Atlanta's most active commercial real estate brokerages.
+                  Trinity CRE Group operates through KW Commercial / Keller Williams Realty Chattahoochee North,
+                  one of Atlanta's most active commercial real estate brokerages -- giving clients the resources
+                  of a major platform with the attention of a dedicated specialty practice.
                 </p>
               </div>
 
-              <div className="mt-8 bg-navy-800/5 border border-navy-800/10 rounded-lg p-6">
-                <h3 className="font-bold text-navy-800 text-lg mb-3">The Trinity CRE Legacy</h3>
+              <div className="mt-8 bg-navy-800/5 border border-navy-800/10 rounded-xl p-6">
+                <h3 className="font-bold text-navy-800 text-base mb-3">38 Years of Trinity CRE</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Trinity CRE Group has been serving the Atlanta industrial market for 38 years, built on a foundation
-                  of trusted client relationships, deep market expertise, and uncompromising integrity. Burke leads the
-                  firm today, continuing that same commitment to long-term partnerships that Trinity CRE has been known
-                  for since its founding.
+                  Trinity CRE Group has been serving the Atlanta industrial market for 38 years, built on a
+                  foundation of trusted client relationships, deep market expertise, and uncompromising integrity.
+                  That same commitment to long-term partnerships continues to define how we work with every client
+                  today.
                 </p>
               </div>
 
               <div className="mt-8">
-                <h3 className="font-bold text-navy-800 text-lg mb-4">Credentials</h3>
+                <h3 className="font-bold text-navy-800 text-base mb-4">Our Credentials</h3>
                 <ul className="space-y-3">
                   {[
                     'KW Commercial / Keller Williams Realty Chattahoochee North',
-                    'B.S. Biological Engineering, University of Georgia',
-                    'M.S. Healthcare Management and Informatics, Kennesaw State University',
+                    '38-Year Track Record in Atlanta Industrial CRE',
                     'Industrial Asset Class Specialist',
-                    'Greater Atlanta Metro Market',
+                    'Analytical, Data-Driven Advisory Approach',
+                    'Greater Atlanta Metro Market Coverage',
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm text-gray-600">
                       <svg className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -87,12 +88,21 @@ export default function AboutPage() {
                 </ul>
               </div>
 
-              <div className="mt-8">
+              <div className="mt-8 flex gap-3">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 bg-gold text-navy-800 font-semibold px-6 py-3 rounded hover:bg-gold-300 transition-colors"
+                  className="inline-flex items-center gap-2 bg-gold text-navy-800 font-semibold px-6 py-3 rounded-lg hover:bg-gold-300 transition-colors text-sm"
                 >
                   Schedule a Call
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-2 border border-navy-800/20 text-navy-800 font-semibold px-6 py-3 rounded-lg hover:border-navy-800/50 transition-colors text-sm"
+                >
+                  Our Services
                 </Link>
               </div>
             </div>

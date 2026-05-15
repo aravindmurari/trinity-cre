@@ -10,7 +10,8 @@ const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
   { href: '/listings', label: 'Listings' },
-  { href: '/insights', label: 'The Trinity Brief' },
+  { href: '/insights', label: 'Trinity Brief' },
+  { href: '/buysell', label: 'Buy / Sell' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -98,7 +99,20 @@ export default function Footer() {
 
         <div className="border-t border-navy-700 mt-8 pt-6 flex flex-col sm:flex-row justify-between gap-2 text-xs">
           <p>&copy; {new Date().getFullYear()} Trinity CRE Group. All rights reserved.</p>
-          <p>Burke Doggett, Commercial Realtor. KW Commercial is a licensed real estate brokerage.</p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+            <p>Trinity CRE Group. KW Commercial is a licensed real estate brokerage.</p>
+            <p>
+              Website by{' '}
+              <a
+                href="https://kepram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gold hover:text-gold-300 transition-colors"
+              >
+                Kepram LLC
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

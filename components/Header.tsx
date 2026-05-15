@@ -10,7 +10,8 @@ const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
   { href: '/listings', label: 'Listings' },
-  { href: '/insights', label: 'The Trinity Brief' },
+  { href: '/insights', label: 'Trinity Brief' },
+  { href: '/buysell', label: 'Buy / Sell' },
   { href: '/contact', label: 'Contact' },
 ]
 

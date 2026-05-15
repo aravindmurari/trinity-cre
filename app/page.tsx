@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { listings } from '@/data/listings'
 import { insights } from '@/data/insights'
 import HeroSection from '@/components/HeroSection'
+import ContactForm from '@/components/ContactForm'
 
 export default function HomePage() {
   const featuredListings = listings.slice(0, 3)
@@ -90,125 +91,196 @@ export default function HomePage() {
       </section>
 
       {/* Featured Listings */}
-      <section className="py-20" style={{ background: 'rgba(10, 49, 30, 0.03)' }}>
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex items-end justify-between mb-12">
             <div>
-              <h2 className="text-3xl font-bold text-navy-800 mb-1">Featured Listings</h2>
-              <p className="text-gray-600">Available industrial properties in Greater Atlanta</p>
+              <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-3">Featured Properties</p>
+              <h2 className="text-4xl font-bold text-navy-800 leading-tight">Available Now</h2>
             </div>
-            <Link href="/listings" className="hidden sm:inline-flex text-gold font-medium text-sm hover:text-gold-500">
-              View all listings &rarr;
+            <Link
+              href="/listings"
+              className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-navy-800 border-b border-navy-800/25 pb-0.5 hover:border-navy-800 transition-colors group"
+            >
+              View all listings
+              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </Link>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredListings.map((listing) => (
               <Link
                 key={listing.slug}
                 href={`/listings/${listing.slug}`}
-                className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+                className="group bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300"
               >
-                <div className="h-48 relative overflow-hidden">
+                <div className="h-52 relative overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={listing.image} alt={listing.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-black/10" />
+                  <img src={listing.image} alt={listing.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                   <div className="absolute top-3 left-3">
-                    <span
-                      className={`text-xs font-semibold px-2.5 py-1 rounded-full ${
-                        listing.type === 'For Sale' ? 'bg-gold text-navy-800' : 'bg-white text-navy-800'
-                      }`}
-                    >
+                    <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${listing.type === 'For Sale' ? 'bg-gold text-navy-800' : 'bg-white text-navy-800'}`}>
                       {listing.type}
+                    </span>
+                  </div>
+                  <div className="absolute bottom-3 right-3">
+                    <span className="bg-black/50 backdrop-blur-sm text-white text-xs font-medium px-2 py-0.5 rounded">
+                      {listing.sqft.toLocaleString()} SF
                     </span>
                   </div>
                 </div>
                 <div className="p-5">
-                  <p className="text-xs text-gray-400 mb-1">{listing.propertyType}</p>
-                  <h3 className="font-semibold text-navy-800 text-base mb-1 group-hover:text-gold transition-colors">
+                  <p className="text-[11px] text-gray-400 uppercase tracking-wide mb-1.5">{listing.propertyType}</p>
+                  <h3 className="font-bold text-navy-800 text-base mb-1 group-hover:text-gold transition-colors leading-snug">
                     {listing.title}
                   </h3>
-                  <p className="text-sm text-gray-500 mb-3">
-                    {listing.city}, {listing.state}
-                  </p>
-                  <div className="flex items-center justify-between border-t border-gray-100 pt-3">
-                    <span className="text-sm font-medium text-gray-700">{listing.sqft.toLocaleString()} SF</span>
+                  <p className="text-sm text-gray-500 mb-4">{listing.city}, {listing.state}</p>
+                  <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                     <span className="text-sm font-semibold text-navy-800">{listing.price || listing.leaseRate}</span>
+                    <span className="text-gold text-xs font-semibold group-hover:translate-x-0.5 transition-transform">View &rarr;</span>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
+
           <div className="text-center mt-8 sm:hidden">
-            <Link href="/listings" className="text-gold font-medium text-sm">
-              View all listings &rarr;
-            </Link>
+            <Link href="/listings" className="text-gold font-medium text-sm">View all listings &rarr;</Link>
           </div>
         </div>
       </section>
 
-      {/* The Trinity Brief */}
-      <section className="py-20 bg-gray-50">
+      {/* Trinity Brief */}
+      <section className="py-24 bg-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex items-end justify-between mb-12">
             <div>
-              <h2 className="text-3xl font-bold text-navy-800 mb-1">The Trinity Brief</h2>
-              <p className="text-gray-600">Market intelligence and resources for Atlanta industrial</p>
+              <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-3">Trinity Brief</p>
+              <h2 className="text-4xl font-bold text-navy-800 leading-tight">Market Intelligence</h2>
             </div>
-            <Link href="/insights" className="hidden sm:inline-flex text-gold font-medium text-sm hover:text-gold-500">
-              Read the Brief &rarr;
+            <Link
+              href="/insights"
+              className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-navy-800 border-b border-navy-800/25 pb-0.5 hover:border-navy-800 transition-colors group"
+            >
+              Read all articles
+              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {recentInsights.map((insight) => (
-              <div
-                key={insight.slug}
-                className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
-              >
-                <div className="h-44 relative overflow-hidden">
+
+          {/* Editorial layout: featured (3/5) + sidebar (2/5) */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+            {recentInsights[0] && (
+              <div className="lg:col-span-3 group cursor-default">
+                <div className="relative h-72 rounded-2xl overflow-hidden mb-5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={insight.image} alt={insight.title} className="w-full h-full object-cover" />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="bg-gold/10 text-gold-600 text-xs font-medium px-2.5 py-1 rounded-full">
-                      {insight.category}
+                  <img src={recentInsights[0].image} alt={recentInsights[0].title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-transparent to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-gold/90 text-navy-800 text-[11px] font-bold px-3 py-1 rounded-full">
+                      {recentInsights[0].category}
                     </span>
-                    <span className="text-gray-400 text-xs">{insight.date}</span>
                   </div>
-                  <h3 className="font-semibold text-navy-800 text-lg mb-2 leading-snug">{insight.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{insight.excerpt}</p>
+                </div>
+                <div className="flex items-center gap-2 mb-3 text-xs text-gray-400">
+                  <span>{recentInsights[0].date}</span>
+                  <span>&bull;</span>
+                  <span>{recentInsights[0].readTime}</span>
+                </div>
+                <h3 className="font-bold text-navy-800 text-xl leading-snug mb-3">{recentInsights[0].title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{recentInsights[0].excerpt}</p>
+              </div>
+            )}
+
+            {recentInsights[1] && (
+              <div className="lg:col-span-2 flex flex-col">
+                <div className="group cursor-default bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden flex-1">
+                  <div className="relative h-44 overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={recentInsights[1].image} alt={recentInsights[1].title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-900/50 via-transparent to-transparent" />
+                    <div className="absolute top-3 left-3">
+                      <span className="bg-gold/90 text-navy-800 text-[11px] font-bold px-2.5 py-0.5 rounded-full">
+                        {recentInsights[1].category}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-5">
+                    <div className="flex items-center gap-2 mb-2 text-xs text-gray-400">
+                      <span>{recentInsights[1].date}</span>
+                      <span>&bull;</span>
+                      <span>{recentInsights[1].readTime}</span>
+                    </div>
+                    <h3 className="font-bold text-navy-800 text-base leading-snug mb-2">{recentInsights[1].title}</h3>
+                    <p className="text-gray-500 text-sm leading-relaxed line-clamp-3">{recentInsights[1].excerpt}</p>
+                  </div>
+                </div>
+
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <Link
+                    href="/insights"
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-navy-800 hover:text-gold transition-colors group"
+                  >
+                    Browse all articles
+                    <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
                 </div>
               </div>
-            ))}
+            )}
           </div>
+
           <div className="text-center mt-8 sm:hidden">
-            <Link href="/insights" className="text-gold font-medium text-sm">
-              Read the Brief &rarr;
-            </Link>
+            <Link href="/insights" className="text-gold font-medium text-sm">Read Trinity Brief &rarr;</Link>
           </div>
         </div>
       </section>
 
-      {/* CTA Strip */}
-      <section className="bg-navy-800 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-3">Ready to Find Your Next Industrial Space?</h2>
-          <p className="text-gray-300 mb-8 max-w-xl mx-auto">
-            Whether you are a tenant, buyer, or investor, let us start with a conversation about what you need.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="tel:7703772063"
-              className="border border-white/30 text-white font-semibold px-8 py-4 rounded-xl hover:border-white/60 hover:bg-white/5 transition-colors"
-            >
-              (770) 377-2063
-            </a>
-            <Link
-              href="/contact"
-              className="bg-gold text-navy-800 font-semibold px-8 py-4 rounded-xl hover:bg-gold-300 transition-colors"
-            >
-              Schedule a Consultation
-            </Link>
+      {/* Contact CTA */}
+      <section className="bg-white border-t border-gray-100 py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
+
+            {/* Left — info + direct contact */}
+            <div className="lg:col-span-2">
+              <p className="text-gold text-[11px] font-bold tracking-widest uppercase mb-4">Get in Touch</p>
+              <h2 className="text-3xl font-bold text-navy-800 leading-snug mb-4">
+                Ready to Find Your Next Industrial Space?
+              </h2>
+              <p className="text-gray-500 text-sm leading-relaxed mb-8">
+                Whether you are a tenant, buyer, or investor, we are here to help. Reach out directly or fill out the form and we will be in touch within one business day.
+              </p>
+              <div className="flex flex-col gap-3 items-start">
+                <a
+                  href="tel:7703772063"
+                  className="inline-flex items-center gap-2.5 text-navy-800 font-semibold text-sm border border-gray-200 px-5 py-3 rounded-lg hover:border-navy-800/40 hover:bg-gray-50 transition-colors"
+                >
+                  <svg className="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  (770) 377-2063
+                </a>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 bg-gold text-navy-800 font-semibold text-sm px-5 py-3 rounded-lg hover:bg-gold-300 transition-colors"
+                >
+                  Schedule a Consultation
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right — compact form */}
+            <div className="lg:col-span-3">
+              <ContactForm variant="light" />
+            </div>
+
           </div>
         </div>
       </section>
