@@ -9,9 +9,9 @@ const GREEN_THEMES = new Set(['forest', 'grove', 'canopy'])
 const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
+  { href: '/buysell', label: 'Buy / Sell' },
   { href: '/listings', label: 'Listings' },
   { href: '/insights', label: 'Trinity Brief' },
-  { href: '/buysell', label: 'Buy / Sell' },
   { href: '/contact', label: 'Contact' },
 ]
 
