@@ -146,34 +146,45 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Market Insights */}
+      {/* The Trinity Brief */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-10">
             <div>
-              <h2 className="text-3xl font-bold text-navy-800 mb-1">Market Insights</h2>
-              <p className="text-gray-600">Atlanta industrial market analysis and tenant resources</p>
+              <h2 className="text-3xl font-bold text-navy-800 mb-1">The Trinity Brief</h2>
+              <p className="text-gray-600">Market intelligence and resources for Atlanta industrial</p>
             </div>
             <Link href="/insights" className="hidden sm:inline-flex text-gold font-medium text-sm hover:text-gold-500">
-              All insights &rarr;
+              Read the Brief &rarr;
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {recentInsights.map((insight) => (
               <div
                 key={insight.slug}
-                className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+                className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="bg-gold/10 text-gold-600 text-xs font-medium px-2.5 py-1 rounded-full">
-                    {insight.category}
-                  </span>
-                  <span className="text-gray-400 text-xs">{insight.date}</span>
+                <div className="h-44 relative overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={insight.image} alt={insight.title} className="w-full h-full object-cover" />
                 </div>
-                <h3 className="font-semibold text-navy-800 text-lg mb-2 leading-snug">{insight.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{insight.excerpt}</p>
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="bg-gold/10 text-gold-600 text-xs font-medium px-2.5 py-1 rounded-full">
+                      {insight.category}
+                    </span>
+                    <span className="text-gray-400 text-xs">{insight.date}</span>
+                  </div>
+                  <h3 className="font-semibold text-navy-800 text-lg mb-2 leading-snug">{insight.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{insight.excerpt}</p>
+                </div>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-8 sm:hidden">
+            <Link href="/insights" className="text-gold font-medium text-sm">
+              Read the Brief &rarr;
+            </Link>
           </div>
         </div>
       </section>

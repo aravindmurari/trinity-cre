@@ -10,7 +10,7 @@ const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
   { href: '/listings', label: 'Listings' },
-  { href: '/insights', label: 'Market Insights' },
+  { href: '/insights', label: 'The Trinity Brief' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -44,25 +44,28 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-            {isGreenTheme ? (
-              <Image
-                src="/trinity-cre/logo-tcre.png"
-                alt="Trinity CRE"
-                width={120}
-                height={48}
-                className="h-10 w-auto object-contain"
-                priority
-              />
-            ) : (
-              <Image
-                src="/trinity-cre/logo-tcre-white.png"
-                alt="Trinity CRE"
-                width={140}
-                height={56}
-                className="h-11 w-auto object-contain"
-                priority
-              />
-            )}
+            <div className="flex flex-col items-start gap-2 w-fit">
+              {isGreenTheme ? (
+                <Image
+                  src="/trinity-cre/logo-tcre.png"
+                  alt="Trinity CRE"
+                  width={120}
+                  height={48}
+                  className="h-10 w-auto object-contain"
+                  priority
+                />
+              ) : (
+                <Image
+                  src="/trinity-cre/logo-tcre-white.png"
+                  alt="Trinity CRE"
+                  width={140}
+                  height={56}
+                  className="h-11 w-auto object-contain"
+                  priority
+                />
+              )}
+              <div className="h-1 w-full bg-gold rounded-full" />
+            </div>
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">

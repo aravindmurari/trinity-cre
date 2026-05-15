@@ -1,31 +1,61 @@
+'use client'
+
 import Link from 'next/link'
+import Image from 'next/image'
+import { useState, useEffect } from 'react'
+
+const GREEN_THEMES = new Set(['forest', 'grove', 'canopy'])
 
 const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
   { href: '/listings', label: 'Listings' },
-  { href: '/insights', label: 'Market Insights' },
+  { href: '/insights', label: 'The Trinity Brief' },
   { href: '/contact', label: 'Contact' },
 ]
 
 export default function Footer() {
+  const [isGreenTheme, setIsGreenTheme] = useState(false)
+
+  useEffect(() => {
+    const check = () => {
+      const t = localStorage.getItem('trinity-theme') ?? 'midnight'
+      setIsGreenTheme(GREEN_THEMES.has(t))
+    }
+    check()
+    window.addEventListener('themechange', check)
+    return () => window.removeEventListener('themechange', check)
+  }, [])
+
   return (
     <footer className="bg-navy-900 text-gray-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-gold rounded-sm flex items-center justify-center">
-                <span className="text-navy-800 font-bold text-sm">T</span>
-              </div>
-              <div>
-                <div className="text-white font-bold text-sm">Trinity CRE Group</div>
-                <div className="text-gold text-xs">Industrial CRE Specialists</div>
-              </div>
+            <div className="flex flex-col items-start gap-2 mb-4 w-fit">
+              {isGreenTheme ? (
+                <Image
+                  src="/trinity-cre/logo-tcre.png"
+                  alt="Trinity CRE Group"
+                  width={120}
+                  height={48}
+                  className="h-10 w-auto object-contain"
+                />
+              ) : (
+                <Image
+                  src="/trinity-cre/logo-tcre-white.png"
+                  alt="Trinity CRE Group"
+                  width={140}
+                  height={56}
+                  className="h-11 w-auto object-contain"
+                />
+              )}
+              <div className="h-1 w-full bg-gold rounded-full" />
             </div>
             <p className="text-sm leading-relaxed mb-4">
-              Industrial commercial real estate specialist serving the Greater Atlanta metro.
-              Tenant representation, buyer representation, and investment sales.
+              Atlanta's industrial CRE specialists. Tenant representation, buyer representation,
+              and investment sales across the Greater Atlanta metro — backed by 38 years of
+              market expertise and trusted client relationships.
             </p>
             <p className="text-xs leading-relaxed">
               KW Commercial / Keller Williams Realty Chattahoochee North
