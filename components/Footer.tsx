@@ -12,6 +12,7 @@ const navLinks = [
   { href: '/buysell', label: 'Buy / Sell' },
   { href: '/listings', label: 'Listings' },
   { href: '/insights', label: 'Trinity Brief' },
+  { href: '/tools', label: 'Tools' },
   { href: '/contact', label: 'Contact' },
 ]
 
