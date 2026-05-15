@@ -75,7 +75,7 @@ export default function ThemeSwitcher() {
   const activeTheme = THEMES.find((t) => t.id === currentTheme) ?? THEMES[0]
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
+    <div className="fixed bottom-6 left-6 z-50 flex flex-col items-start gap-2">
       {open && (
         <div className="bg-white/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-200/80 p-4 w-60">
 
