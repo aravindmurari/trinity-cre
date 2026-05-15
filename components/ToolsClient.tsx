@@ -462,9 +462,9 @@ export default function ToolsClient() {
       <div className="mt-8 bg-navy-800 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div>
           <p className="text-gold text-[10px] font-bold tracking-[0.25em] uppercase mb-2">Want Expert Guidance?</p>
-          <h3 className="text-white font-bold text-lg mb-1">Talk to Burke Directly</h3>
+          <h3 className="text-white font-bold text-lg mb-1">Talk to a Specialist</h3>
           <p className="text-gray-400 text-sm leading-relaxed">
-            These numbers are a starting point. Burke will build a full analysis tailored to your specific situation.
+            These numbers are a starting point. Our team will build a full analysis tailored to your specific situation.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
