@@ -215,14 +215,6 @@ export default function ServiceHero() {
         )}
       </div>
 
-      {/* Phone — desktop only */}
-      <a
-        href="tel:7703772063"
-        className="absolute bottom-6 right-6 text-white/60 text-xs font-medium hover:text-gold transition-colors z-20 hidden sm:block"
-      >
-        (770) 377-2063
-      </a>
-
     </section>
   )
 }
