@@ -36,7 +36,7 @@ export default function ContactForm() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         <h3 className="font-semibold text-green-800 mb-1">Message sent.</h3>
-        <p className="text-green-700 text-sm">Burke will be in touch within one business day.</p>
+        <p className="text-green-700 text-sm">We'll be in touch within one business day.</p>
       </div>
     )
   }
@@ -110,7 +110,7 @@ export default function ContactForm() {
           name="message"
           rows={5}
           required
-          placeholder="Tell me about your requirements, timeline, size, location preferences..."
+          placeholder="Tell us about your requirements, timeline, size, location preferences..."
           className="w-full px-3 py-2.5 border border-gray-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-gold resize-none"
         />
       </div>

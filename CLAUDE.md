@@ -10,10 +10,10 @@
 - Office: (678) 578-2700
 
 ## Background & Context
-- Trinity CRE brand was built by **Cravens Doggett** (38 years in CRE), who announced retirement effective July 2025. Burke is stepping into Cravens's book of business.
+- Trinity CRE Group has 38 years of history in the Atlanta industrial CRE market. Burke leads the firm today.
 - Burke's educational background: B.S. Biological Engineering (UGA), M.S. Healthcare Management and Informatics (KSU). Relatively early-career, transitioning from science/health into CRE.
 - Specializes in **industrial asset class**.
-- This website is critical timing - Burke needs to establish his own digital identity before Cravens's name stops opening doors. This is a succession play, not just a vanity site.
+- Do NOT reference Cravens Doggett's retirement or succession anywhere on the site.
 
 ## Burke's Current Online Footprint (thin)
 - LinkedIn: linkedin.com/in/burke-doggett/ (exists, quiet)

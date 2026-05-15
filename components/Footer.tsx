@@ -20,7 +20,7 @@ export default function Footer() {
               </div>
               <div>
                 <div className="text-white font-bold text-sm">Trinity CRE Group</div>
-                <div className="text-gold text-xs">Burke Doggett</div>
+                <div className="text-gold text-xs">Industrial CRE Specialists</div>
               </div>
             </div>
             <p className="text-sm leading-relaxed mb-4">

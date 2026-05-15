@@ -1,7 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import Image from 'next/image'
+import { useState, useEffect } from 'react'
+
+const GREEN_THEMES = new Set(['forest', 'grove', 'canopy'])
 
 const navLinks = [
   { href: '/about', label: 'About' },
@@ -13,27 +16,47 @@ const navLinks = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isGreenTheme, setIsGreenTheme] = useState(false)
+
+  useEffect(() => {
+    const check = () => {
+      const t = localStorage.getItem('trinity-theme') ?? 'midnight'
+      setIsGreenTheme(GREEN_THEMES.has(t))
+    }
+    check()
+    window.addEventListener('themechange', check)
+    return () => window.removeEventListener('themechange', check)
+  }, [])
 
   return (
     <header className="bg-navy-800/95 backdrop-blur-md sticky top-0 z-50 border-b border-navy-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-            {/* Premium logo mark - stylized T with leaf accent */}
-            <div className="w-8 h-8 bg-gold rounded-sm flex items-center justify-center relative overflow-hidden">
-              <svg viewBox="0 0 32 32" className="w-full h-full" fill="none">
-                {/* Gold background handled by parent div */}
-                {/* Stylized T letterform */}
-                <rect x="6" y="8" width="20" height="3" rx="1" fill="#0A311E" />
-                <rect x="14.5" y="11" width="3" height="14" rx="1" fill="#0A311E" />
-                {/* Small leaf accent at bottom of T stem */}
-                <ellipse cx="16" cy="24.5" rx="2" ry="1.2" fill="#0A311E" opacity="0.5" />
-              </svg>
-            </div>
-            <div>
-              <div className="text-white font-bold text-sm leading-tight">Trinity CRE Group</div>
-              <div className="text-gold text-xs leading-tight">Burke Doggett</div>
-            </div>
+            {isGreenTheme ? (
+              <Image
+                src="/trinity-cre/logo-tcre.png"
+                alt="Trinity CRE"
+                width={120}
+                height={48}
+                className="h-10 w-auto object-contain"
+                priority
+              />
+            ) : (
+              <>
+                <div className="w-8 h-8 bg-gold rounded-sm flex items-center justify-center relative overflow-hidden">
+                  <svg viewBox="0 0 32 32" className="w-full h-full" fill="none">
+                    <rect x="6" y="8" width="20" height="3" rx="1" fill="#0A311E" />
+                    <rect x="14.5" y="11" width="3" height="14" rx="1" fill="#0A311E" />
+                    <ellipse cx="16" cy="24.5" rx="2" ry="1.2" fill="#0A311E" opacity="0.5" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-white font-bold text-sm leading-tight">Trinity CRE Group</div>
+                  <div className="text-gold text-xs leading-tight">Industrial CRE Specialists</div>
+                </div>
+              </>
+            )}
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">

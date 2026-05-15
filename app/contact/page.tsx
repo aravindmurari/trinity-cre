@@ -3,7 +3,7 @@ import ContactForm from '@/components/ContactForm'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Get in touch with Burke Doggett - industrial CRE specialist in Greater Atlanta.',
+  description: 'Get in touch with Trinity CRE Group - industrial commercial real estate specialists in Greater Atlanta.',
 }
 
 export default function ContactPage() {
@@ -92,7 +92,7 @@ export default function ContactPage() {
               <div className="bg-navy-800/5 border border-navy-800/10 rounded-lg p-5">
                 <h3 className="font-semibold text-navy-800 text-sm mb-2">Prefer to Schedule a Call?</h3>
                 <p className="text-sm text-gray-600 mb-2">
-                  Use the form or call directly -- Burke typically responds within one business day.
+                  Use the form or call directly -- we typically respond within one business day.
                 </p>
                 <p className="text-xs text-gray-400">Calendly scheduling link coming soon.</p>
               </div>

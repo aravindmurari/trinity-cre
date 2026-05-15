@@ -13,17 +13,17 @@ export const metadata: Metadata = {
     template: '%s | Trinity CRE Group',
   },
   description:
-    'Burke Doggett - Industrial commercial real estate specialist serving Greater Atlanta. Tenant representation, buyer representation, and investment sales.',
+    'Trinity CRE Group - Industrial commercial real estate specialists serving Greater Atlanta. Tenant representation, buyer representation, and investment sales.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={geist.className}>
+    <html lang="en" className={geist.className} suppressHydrationWarning>
       <head>
         {/* Restore saved theme before first paint to prevent flash */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('trinity-theme')||'midnight';if(t!=='verdant')document.documentElement.setAttribute('data-theme',t)}catch(e){}`,
+            __html: `try{var t=localStorage.getItem('trinity-theme')||'midnight';if(t&&t!=='slate')document.documentElement.setAttribute('data-theme',t)}catch(e){}`,
           }}
         />
       </head>

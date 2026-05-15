@@ -57,7 +57,7 @@ export default function ListingsContent() {
             href="/contact"
             className="inline-flex items-center gap-2 bg-navy-800 text-white text-sm font-semibold px-5 py-2.5 rounded hover:bg-navy-700 transition-colors"
           >
-            Contact Burke
+            Contact Us
           </Link>
         </div>
       </div>

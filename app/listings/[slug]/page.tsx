@@ -133,7 +133,7 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
               <div className="bg-navy-800 rounded-lg p-5 text-white">
                 <h3 className="font-semibold mb-1">Interested in This Property?</h3>
                 <p className="text-gray-300 text-sm mb-4">
-                  Contact Burke Doggett to schedule a tour or request more information.
+                  Contact Trinity CRE to schedule a tour or request more information.
                 </p>
                 <a
                   href="tel:7703772063"

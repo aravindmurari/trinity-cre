@@ -2,11 +2,18 @@
 
 import { useEffect, useState } from 'react'
 
-const THEMES = [
+const CLASSIC_THEMES = [
   { id: 'slate',    label: 'Slate',    bg: '#1E2A35', accent: '#E8A030', description: 'Steel blue + amber' },
   { id: 'midnight', label: 'Midnight', bg: '#0F1B2D', accent: '#C9A84C', description: 'Navy + gold' },
-  { id: 'copper',   label: 'Copper',   bg: '#18130E', accent: '#C4774A', description: 'Charcoal + copper' },
 ]
+
+const GREEN_THEMES = [
+  { id: 'forest',   label: 'Forest',   bg: '#122E18', accent: '#C9A84C', description: 'Dark forest + gold' },
+  { id: 'grove',    label: 'Grove',    bg: '#0B2212', accent: '#D4C08A', description: 'Deep forest + cream' },
+  { id: 'canopy',   label: 'Canopy',   bg: '#154B22', accent: '#E8B84A', description: 'Forest + amber' },
+]
+
+const THEMES = [...CLASSIC_THEMES, ...GREEN_THEMES]
 
 const ANIMATIONS = [
   {
@@ -69,6 +76,7 @@ export default function ThemeSwitcher() {
     }
     localStorage.setItem('trinity-theme', id)
     setCurrentTheme(id)
+    window.dispatchEvent(new CustomEvent('themechange'))
   }
 
   function applyAnimation(id: 'particles' | 'skyline' | 'panels') {
@@ -85,9 +93,38 @@ export default function ThemeSwitcher() {
         <div className="bg-white/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-200/80 p-4 w-60">
 
           {/* Theme */}
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Color Theme</p>
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Classic</p>
+          <div className="flex flex-col gap-1.5 mb-4">
+            {CLASSIC_THEMES.map((theme) => (
+              <button
+                key={theme.id}
+                onClick={() => applyTheme(theme.id)}
+                className={`flex items-center gap-3 w-full rounded-xl p-2.5 transition-all cursor-pointer text-left ${
+                  currentTheme === theme.id ? 'bg-gray-100 ring-1 ring-gray-300' : 'hover:bg-gray-50'
+                }`}
+              >
+                <div className="w-9 h-9 rounded-lg overflow-hidden flex-shrink-0 shadow-sm" style={{ border: '1px solid rgba(0,0,0,0.08)' }}>
+                  <div className="h-1/2 w-full" style={{ background: theme.bg }} />
+                  <div className="h-1/2 w-full" style={{ background: theme.accent }} />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800 leading-tight">{theme.label}</p>
+                  <p className="text-xs text-gray-400 leading-tight">{theme.description}</p>
+                </div>
+                {currentTheme === theme.id && (
+                  <svg className="w-4 h-4 text-gray-400 ml-auto flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                )}
+              </button>
+            ))}
+          </div>
+
+          <div className="border-t border-gray-100 mb-4" />
+
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">TCRE Brand</p>
           <div className="flex flex-col gap-1.5 mb-5">
-            {THEMES.map((theme) => (
+            {GREEN_THEMES.map((theme) => (
               <button
                 key={theme.id}
                 onClick={() => applyTheme(theme.id)}

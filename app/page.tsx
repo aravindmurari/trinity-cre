@@ -160,7 +160,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="order-1 md:order-2">
-              <p className="text-gold font-semibold text-sm uppercase tracking-wide mb-3">About Burke Doggett</p>
+              <p className="text-gold font-semibold text-sm uppercase tracking-wide mb-3">About Trinity CRE</p>
               <h2 className="text-3xl font-bold text-navy-800 mb-4">
                 Data-Driven. Locally Rooted. Industrially Focused.
               </h2>
@@ -169,14 +169,14 @@ export default function HomePage() {
                 healthcare informatics means he approaches every deal with precision, not just intuition.
               </p>
               <p className="text-gray-600 leading-relaxed mb-6">
-                As the next generation of Trinity CRE Group, Burke carries forward 38 years of trusted relationships and
-                market expertise built by Cravens Doggett in the Atlanta industrial market.
+                Burke leads Trinity CRE Group, combining 38 years of trusted client relationships and deep Atlanta
+                industrial market expertise with a rigorous, data-driven approach to every deal.
               </p>
               <Link
                 href="/about"
                 className="inline-flex items-center gap-2 bg-navy-800 text-white font-semibold px-6 py-3 rounded-xl hover:bg-navy-700 transition-colors"
               >
-                Meet Burke
+                About Us
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>

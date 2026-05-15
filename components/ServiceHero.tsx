@@ -76,7 +76,8 @@ export default function ServiceHero() {
           <img
             src={panel.image}
             alt=""
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-all duration-500"
+            style={{ filter: 'var(--hero-img-filter)' }}
             draggable={false}
           />
         </div>
@@ -84,6 +85,8 @@ export default function ServiceHero() {
 
       {/* Overall dark tint */}
       <div className="absolute inset-0 bg-black/35" />
+      {/* Theme tint — green for TCRE brand themes, transparent otherwise */}
+      <div className="absolute inset-0 transition-colors duration-500" style={{ background: 'var(--hero-tint)' }} />
 
       {/* ── DESKTOP: 3 panels side by side, centered, not full width ── */}
       <div className="hidden sm:flex absolute inset-0 items-center justify-center z-20 px-4">
@@ -98,7 +101,7 @@ export default function ServiceHero() {
                 style={{
                   border: '1px solid rgba(255,255,255,0.25)',
                   marginLeft: i > 0 ? -1 : 0,
-                  background: isActive ? 'rgba(15,40,55,0.72)' : 'rgba(0,0,0,0.12)',
+                  background: isActive ? 'var(--panel-active)' : 'rgba(0,0,0,0.12)',
                   backdropFilter: isActive ? 'blur(6px)' : 'none',
                   zIndex: isActive ? 1 : 0,
                 }}
@@ -158,7 +161,7 @@ export default function ServiceHero() {
                 maxWidth: 320,
                 height: 380,
                 border: '1px solid rgba(255,255,255,0.25)',
-                background: 'rgba(15,40,55,0.72)',
+                background: 'var(--panel-active)',
                 backdropFilter: 'blur(6px)',
                 padding: '1.75rem',
               }}

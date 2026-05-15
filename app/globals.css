@@ -49,33 +49,105 @@
   --color-gold: #C9A84C;
 }
 
-/* Copper theme: dark warm charcoal + copper/bronze */
-[data-theme="copper"] {
-  --color-navy-50: #EDE8E3;
-  --color-navy-100: #D0C4B8;
-  --color-navy-200: #AC9880;
-  --color-navy-300: #886D50;
-  --color-navy-400: #6A4E30;
-  --color-navy-500: #4E3520;
-  --color-navy-600: #352415;
-  --color-navy-700: #22170D;
-  --color-navy-800: #18130E;
-  --color-navy-900: #0D0A07;
-  --color-navy: #18130E;
+/* Forest theme (Option 1): classic dark forest green + gold */
+[data-theme="forest"] {
+  --color-navy-50: #E5F3E7;
+  --color-navy-100: #B5DDB9;
+  --color-navy-200: #7CBD84;
+  --color-navy-300: #4A9456;
+  --color-navy-400: #35793F;
+  --color-navy-500: #29613B;
+  --color-navy-600: #204C29;
+  --color-navy-700: #193D21;
+  --color-navy-800: #122E18;
+  --color-navy-900: #091808;
+  --color-navy: #122E18;
 
-  /* Copper replaces gold as the accent */
-  --color-gold-50: #FAF0E8;
-  --color-gold-100: #F0D4B8;
-  --color-gold-200: #E0AE88;
-  --color-gold-300: #CF8A5C;
-  --color-gold-400: #C4774A;
-  --color-gold-500: #A05C32;
-  --color-gold-600: #7A4220;
-  --color-gold: #C4774A;
+  --color-gold-50: #FDF8EC;
+  --color-gold-100: #F9EEC8;
+  --color-gold-200: #F2DB8A;
+  --color-gold-300: #D4B866;
+  --color-gold-400: #C9A84C;
+  --color-gold-500: #A8872E;
+  --color-gold-600: #876820;
+  --color-gold: #C9A84C;
+}
+
+/* Grove theme (Option 2): deep forest + cream accent */
+[data-theme="grove"] {
+  --color-navy-50: #E2F0E4;
+  --color-navy-100: #A5D0AC;
+  --color-navy-200: #62A86E;
+  --color-navy-300: #358044;
+  --color-navy-400: #286534;
+  --color-navy-500: #1F4D29;
+  --color-navy-600: #183A20;
+  --color-navy-700: #112D18;
+  --color-navy-800: #0B2212;
+  --color-navy-900: #061209;
+  --color-navy: #0B2212;
+
+  --color-gold-50: #FAF6EC;
+  --color-gold-100: #EFE4C4;
+  --color-gold-200: #E2CE98;
+  --color-gold-300: #D4B870;
+  --color-gold-400: #C9A84A;
+  --color-gold-500: #A88630;
+  --color-gold-600: #836818;
+  --color-gold: #D4C08A;
+}
+
+/* Canopy theme (Option 3): medium forest + bright amber */
+[data-theme="canopy"] {
+  --color-navy-50: #E6F5E9;
+  --color-navy-100: #B8E2C0;
+  --color-navy-200: #79C887;
+  --color-navy-300: #48AE5E;
+  --color-navy-400: #369B4B;
+  --color-navy-500: #2C863F;
+  --color-navy-600: #237034;
+  --color-navy-700: #1C5D2B;
+  --color-navy-800: #154B22;
+  --color-navy-900: #0A2811;
+  --color-navy: #154B22;
+
+  --color-gold-50: #FFF8E8;
+  --color-gold-100: #FFE9B0;
+  --color-gold-200: #FFD470;
+  --color-gold-300: #F0BC40;
+  --color-gold-400: #E8A830;
+  --color-gold-500: #C08018;
+  --color-gold-600: #945E08;
+  --color-gold: #E8B84A;
 }
 
 html {
   scroll-behavior: smooth;
+  --panel-active: rgba(15, 40, 55, 0.72);
+  --hero-tint: transparent;
+  --hero-img-filter: none;
+}
+
+[data-theme="midnight"] {
+  --panel-active: rgba(8, 20, 40, 0.78);
+}
+
+[data-theme="forest"] {
+  --panel-active: rgba(10, 28, 14, 0.75);
+  --hero-tint: rgba(10, 50, 18, 0.22);
+  --hero-img-filter: brightness(1.55) contrast(1.22) saturate(1.25);
+}
+
+[data-theme="grove"] {
+  --panel-active: rgba(5, 16, 8, 0.80);
+  --hero-tint: rgba(5, 38, 12, 0.24);
+  --hero-img-filter: brightness(1.60) contrast(1.25) saturate(1.20);
+}
+
+[data-theme="canopy"] {
+  --panel-active: rgba(12, 42, 20, 0.75);
+  --hero-tint: rgba(15, 58, 22, 0.20);
+  --hero-img-filter: brightness(1.50) contrast(1.20) saturate(1.30);
 }
 
 body {

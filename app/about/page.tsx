@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'About Burke Doggett',
+  title: 'About',
   description:
-    'Burke Doggett - Industrial CRE specialist at KW Commercial. Data-driven analysis combined with 38 years of Trinity CRE Group expertise in Greater Atlanta.',
+    'Trinity CRE Group - Industrial CRE specialists at KW Commercial. Data-driven analysis combined with 38 years of expertise in the Greater Atlanta industrial market.',
 }
 
 export default function AboutPage() {
@@ -62,10 +62,10 @@ export default function AboutPage() {
               <div className="mt-8 bg-navy-800/5 border border-navy-800/10 rounded-lg p-6">
                 <h3 className="font-bold text-navy-800 text-lg mb-3">The Trinity CRE Legacy</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Trinity CRE Group was built over 38 years by Cravens Doggett, one of Atlanta's most respected
-                  commercial real estate figures. With Cravens's retirement in 2025, Burke is stepping forward to
-                  continue that legacy -- bringing the same commitment to long-term client relationships, market
-                  expertise, and integrity that Trinity CRE has been known for since its founding.
+                  Trinity CRE Group has been serving the Atlanta industrial market for 38 years, built on a foundation
+                  of trusted client relationships, deep market expertise, and uncompromising integrity. Burke leads the
+                  firm today, continuing that same commitment to long-term partnerships that Trinity CRE has been known
+                  for since its founding.
                 </p>
               </div>
 
@@ -98,7 +98,7 @@ export default function AboutPage() {
                   href="/contact"
                   className="inline-flex items-center gap-2 bg-gold text-navy-800 font-semibold px-6 py-3 rounded hover:bg-gold-300 transition-colors"
                 >
-                  Schedule a Call with Burke
+                  Schedule a Call
                 </Link>
               </div>
             </div>
