@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
-const GREEN_THEMES = new Set(['forest', 'grove', 'canopy'])
+const GREEN_THEMES = new Set(['forest', 'grove'])
 
 const navLinks = [
   { href: '/about', label: 'About' },

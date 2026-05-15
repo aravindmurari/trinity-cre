@@ -10,7 +10,6 @@ const CLASSIC_THEMES = [
 const GREEN_THEMES = [
   { id: 'forest',   label: 'Forest',   bg: '#122E18', accent: '#C9A84C', description: 'Dark forest + gold' },
   { id: 'grove',    label: 'Grove',    bg: '#0B2212', accent: '#D4C08A', description: 'Deep forest + cream' },
-  { id: 'canopy',   label: 'Canopy',   bg: '#154B22', accent: '#E8B84A', description: 'Forest + amber' },
 ]
 
 const THEMES = [...CLASSIC_THEMES, ...GREEN_THEMES]
@@ -31,20 +30,6 @@ const ANIMATIONS = [
     ),
   },
   {
-    id: 'skyline',
-    label: 'Skyline',
-    description: 'City at night',
-    icon: (
-      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 21h18M3 10h2v11H3zM7 6h4v15H7zM13 3h4v18h-4zM19 9h2v12h-2z" />
-        <rect x="8"  y="9"  width="1.2" height="1.5" fill="currentColor" stroke="none" />
-        <rect x="10" y="9"  width="1.2" height="1.5" fill="currentColor" stroke="none" />
-        <rect x="14" y="6"  width="1.2" height="1.5" fill="currentColor" stroke="none" />
-        <rect x="16" y="6"  width="1.2" height="1.5" fill="currentColor" stroke="none" />
-      </svg>
-    ),
-  },
-  {
     id: 'panels',
     label: 'Panels',
     description: 'Service panels',
@@ -60,12 +45,12 @@ const ANIMATIONS = [
 
 export default function ThemeSwitcher() {
   const [currentTheme, setCurrentTheme] = useState('midnight')
-  const [currentAnim,  setCurrentAnim]  = useState<'particles' | 'skyline' | 'panels'>('panels')
+  const [currentAnim,  setCurrentAnim]  = useState<'particles' | 'panels'>('panels')
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
     setCurrentTheme(localStorage.getItem('trinity-theme') ?? 'midnight')
-    setCurrentAnim((localStorage.getItem('trinity-animation') ?? 'panels') as 'particles' | 'skyline' | 'panels')
+    setCurrentAnim((localStorage.getItem('trinity-animation') ?? 'panels') as 'particles' | 'panels')
   }, [])
 
   function applyTheme(id: string) {
@@ -79,7 +64,7 @@ export default function ThemeSwitcher() {
     window.dispatchEvent(new CustomEvent('themechange'))
   }
 
-  function applyAnimation(id: 'particles' | 'skyline' | 'panels') {
+  function applyAnimation(id: 'particles' | 'panels') {
     localStorage.setItem('trinity-animation', id)
     setCurrentAnim(id)
     window.dispatchEvent(new CustomEvent('animationchange', { detail: id }))
@@ -155,7 +140,7 @@ export default function ThemeSwitcher() {
             {ANIMATIONS.map((anim) => (
               <button
                 key={anim.id}
-                onClick={() => applyAnimation(anim.id as 'particles' | 'skyline' | 'panels')}
+                onClick={() => applyAnimation(anim.id as 'particles' | 'panels')}
                 className={`flex-1 flex flex-col items-center gap-1.5 rounded-xl py-2.5 px-2 text-center transition-all cursor-pointer ${
                   currentAnim === anim.id
                     ? 'bg-gray-100 ring-1 ring-gray-300 text-gray-700'
