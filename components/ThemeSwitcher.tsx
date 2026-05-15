@@ -49,7 +49,9 @@ export default function ThemeSwitcher() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    setCurrentTheme(localStorage.getItem('trinity-theme') ?? 'midnight')
+    const savedTheme = localStorage.getItem('trinity-theme') ?? 'midnight'
+    setCurrentTheme(savedTheme)
+    applyTheme(savedTheme)
     setCurrentAnim((localStorage.getItem('trinity-animation') ?? 'panels') as 'particles' | 'panels')
   }, [])
 
