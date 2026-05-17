@@ -83,7 +83,7 @@ export const insights: Insight[] = [
     slug: 'trinity-cre-q1-2026-transactions',
     title: 'Trinity CRE Closes Multiple Transactions Across Greater Atlanta in Q1',
     excerpt:
-      'Trinity CRE Group represented tenants and buyers across three Greater Atlanta submarkets in Q1 2026, closing deals in Norcross, Marietta, and the I-20 West corridor. A look at what moved and why.',
+      'Trinity Commercial Real Estate represented tenants and buyers across three Greater Atlanta submarkets in Q1 2026, closing deals in Norcross, Marietta, and the I-20 West corridor. A look at what moved and why.',
     date: 'February 1, 2026',
     readTime: '2 min read',
     category: 'Company News',

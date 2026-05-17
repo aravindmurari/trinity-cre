@@ -38,7 +38,7 @@ export default function Footer() {
               {isGreenTheme ? (
                 <Image
                   src="/trinity-cre/logo-tcre.png"
-                  alt="Trinity CRE Group"
+                  alt="Trinity Commercial Real Estate"
                   width={120}
                   height={48}
                   className="h-10 w-auto object-contain"
@@ -46,7 +46,7 @@ export default function Footer() {
               ) : (
                 <Image
                   src="/trinity-cre/logo-tcre-white.png"
-                  alt="Trinity CRE Group"
+                  alt="Trinity Commercial Real Estate"
                   width={140}
                   height={56}
                   className="h-11 w-auto object-contain"
@@ -99,9 +99,9 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-navy-700 mt-8 pt-6 flex flex-col sm:flex-row justify-between gap-2 text-xs">
-          <p>&copy; {new Date().getFullYear()} Trinity CRE Group. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Trinity Commercial Real Estate. All rights reserved.</p>
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-            <p>Trinity CRE Group. KW Commercial is a licensed real estate brokerage.</p>
+            <p>Trinity Commercial Real Estate. KW Commercial is a licensed real estate brokerage.</p>
             <p>
               Website by{' '}
               <a

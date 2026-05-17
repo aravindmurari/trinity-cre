@@ -20,6 +20,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [isGreenTheme, setIsGreenTheme] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [bannerVisible, setBannerVisible] = useState(true)
 
   useEffect(() => {
     const check = () => {
@@ -43,6 +44,20 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled ? 'backdrop-blur-md border-white/10' : 'backdrop-blur-sm border-white/10'}`}
       style={{ backgroundColor: scrolled ? 'color-mix(in srgb, var(--color-navy-800) 95%, transparent)' : 'color-mix(in srgb, var(--color-navy-800) 50%, transparent)' }}
     >
+      {bannerVisible && (
+        <div style={{ background: 'var(--color-navy-800)', borderBottom: '1px solid color-mix(in srgb, var(--color-gold) 30%, transparent)', padding: '5px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
+          <p style={{ color: 'var(--color-gold)', fontSize: '11px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', margin: 0 }}>
+            Confidential Demo — Prepared exclusively for Trinity Commercial Real Estate
+          </p>
+          <button
+            onClick={() => setBannerVisible(false)}
+            style={{ color: 'var(--color-gold)', background: 'color-mix(in srgb, var(--color-gold) 15%, transparent)', border: '1px solid color-mix(in srgb, var(--color-gold) 40%, transparent)', borderRadius: '4px', cursor: 'pointer', fontSize: '11px', fontWeight: 700, lineHeight: 1, padding: '2px 7px', flexShrink: 0 }}
+            aria-label="Dismiss banner"
+          >
+            ✕ Dismiss
+          </button>
+        </div>
+      )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3 flex-shrink-0">

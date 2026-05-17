@@ -3,7 +3,7 @@ import ContactForm from '@/components/ContactForm'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Get in touch with Trinity CRE Group - industrial commercial real estate specialists in Greater Atlanta.',
+  description: 'Get in touch with Trinity Commercial Real Estate - industrial commercial real estate specialists in Greater Atlanta.',
 }
 
 export default function ContactPage() {

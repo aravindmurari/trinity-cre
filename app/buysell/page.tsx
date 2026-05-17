@@ -3,7 +3,7 @@ import BuySellForm from '@/components/BuySellForm'
 
 export const metadata: Metadata = {
   title: 'Buy or Sell',
-  description: 'Submit your buyer or seller profile to Trinity CRE Group. Tell us what you need and we will get to work.',
+  description: 'Submit your buyer or seller profile to Trinity Commercial Real Estate. Tell us what you need and we will get to work.',
 }
 
 export default function BuySellPage() {

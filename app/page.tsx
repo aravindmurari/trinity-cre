@@ -38,7 +38,7 @@ export default function HomePage() {
                 TCRE
               </span>
               <p className="text-gold text-[11px] font-bold tracking-[0.25em] uppercase mb-6">
-                About Trinity CRE Group
+                About Trinity Commercial Real Estate
               </p>
               <h2 className="text-4xl lg:text-5xl font-bold text-white leading-[1.1] mb-6">
                 Data-Driven.<br />

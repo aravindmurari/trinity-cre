@@ -4,7 +4,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Trinity CRE Group - Industrial CRE specialists at KW Commercial. Data-driven analysis combined with 38 years of expertise in the Greater Atlanta industrial market.',
+    'Trinity Commercial Real Estate - Industrial CRE specialists at KW Commercial. Data-driven analysis combined with 38 years of expertise in the Greater Atlanta industrial market.',
 }
 
 export default function AboutPage() {
@@ -13,7 +13,7 @@ export default function AboutPage() {
       <section className="bg-navy-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">About</p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">About Trinity CRE Group</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">About Trinity Commercial Real Estate</h1>
           <p className="text-gray-300 text-lg max-w-2xl">
             Industrial CRE specialists at KW Commercial, serving the Greater Atlanta market with a data-driven, client-first approach.
           </p>
@@ -27,7 +27,7 @@ export default function AboutPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80"
-                alt="Trinity CRE Group"
+                alt="Trinity Commercial Real Estate"
                 className="w-full h-full object-cover object-top"
               />
             </div>
@@ -36,7 +36,7 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold text-navy-800 mb-6">A Different Kind of Industrial Brokerage</h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p>
-                  Most commercial real estate firms came up through traditional sales. Trinity CRE Group takes a
+                  Most commercial real estate firms came up through traditional sales. Trinity Commercial Real Estate takes a
                   different approach -- grounded in analytical rigor, data-driven decision-making, and a deep
                   understanding of the industrial asset class. That foundation shapes how we approach every
                   transaction, from initial market survey to final negotiations.
@@ -48,7 +48,7 @@ export default function AboutPage() {
                   understands the numbers as well as the market.
                 </p>
                 <p>
-                  Trinity CRE Group operates through KW Commercial / Keller Williams Realty Chattahoochee North,
+                  Trinity Commercial Real Estate operates through KW Commercial / Keller Williams Realty Chattahoochee North,
                   one of Atlanta's most active commercial real estate brokerages -- giving clients the resources
                   of a major platform with the attention of a dedicated specialty practice.
                 </p>
@@ -57,7 +57,7 @@ export default function AboutPage() {
               <div className="mt-8 bg-navy-800/5 border border-navy-800/10 rounded-xl p-6">
                 <h3 className="font-bold text-navy-800 text-base mb-3">38 Years of Trinity CRE</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
-                  Trinity CRE Group has been serving the Atlanta industrial market for 38 years, built on a
+                  Trinity Commercial Real Estate has been serving the Atlanta industrial market for 38 years, built on a
                   foundation of trusted client relationships, deep market expertise, and uncompromising integrity.
                   That same commitment to long-term partnerships continues to define how we work with every client
                   today.
