@@ -427,60 +427,84 @@ export default function ToolsClient() {
 
   if (!ready) return null
 
-  if (!unlocked) return <GateForm onUnlock={() => setUnlocked(true)} />
-
-  return (
-    <div>
-      {/* Tab bar */}
-      <div className="flex gap-1.5 mb-8 bg-white rounded-xl border border-gray-200 p-1.5">
-        {TABS.map((tab, i) => (
-          <button
-            key={i}
-            onClick={() => setActiveTab(i)}
-            className={`flex-1 px-4 py-3 rounded-lg text-center transition-all cursor-pointer ${
-              activeTab === i ? 'bg-navy-800 shadow-sm' : 'hover:bg-gray-50'
-            }`}
-          >
-            <p className={`text-sm font-semibold leading-tight ${activeTab === i ? 'text-white' : 'text-gray-800'}`}>
-              {tab.label}
-            </p>
-            <p className={`text-xs mt-0.5 ${activeTab === i ? 'text-gray-300' : 'text-gray-400'}`}>
-              {tab.sub}
-            </p>
-          </button>
-        ))}
-      </div>
-
-      {/* Calculator panel */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-8">
-        {activeTab === 0 && <LeaseCalc />}
-        {activeTab === 1 && <SpaceCalc />}
-        {activeTab === 2 && <CapRateCalc />}
-      </div>
-
-      {/* CTA strip */}
-      <div className="mt-8 bg-navy-800 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div>
-          <p className="text-gold text-[10px] font-bold tracking-[0.25em] uppercase mb-2">Want Expert Guidance?</p>
-          <h3 className="text-white font-bold text-lg mb-1">Talk to a Specialist</h3>
-          <p className="text-gray-400 text-sm leading-relaxed">
-            These numbers are a starting point. Our team will build a full analysis tailored to your specific situation.
+  const tabs = (
+    <div className="flex gap-1.5 mb-8 bg-white rounded-xl border border-gray-200 p-1.5">
+      {TABS.map((tab, i) => (
+        <button
+          key={i}
+          onClick={() => setActiveTab(i)}
+          className={`flex-1 px-4 py-3 rounded-lg text-center transition-all cursor-pointer ${
+            activeTab === i ? 'bg-navy-800 shadow-sm' : 'hover:bg-gray-50'
+          }`}
+        >
+          <p className={`text-sm font-semibold leading-tight ${activeTab === i ? 'text-white' : 'text-gray-800'}`}>
+            {tab.label}
           </p>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
-          <a
-            href="tel:7703772063"
-            className="inline-flex items-center justify-center gap-2 bg-white/10 text-white font-semibold text-sm px-5 py-3 rounded-lg hover:bg-white/15 transition-colors whitespace-nowrap"
-          >
-            (770) 377-2063
-          </a>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2 bg-gold text-navy-800 font-semibold text-sm px-5 py-3 rounded-lg hover:bg-gold-300 transition-colors whitespace-nowrap"
-          >
-            Schedule a Call
-          </Link>
-        </div>
+          <p className={`text-xs mt-0.5 ${activeTab === i ? 'text-gray-300' : 'text-gray-400'}`}>
+            {tab.sub}
+          </p>
+        </button>
+      ))}
+    </div>
+  )
+
+  const calculators = (
+    <div className="bg-white rounded-2xl border border-gray-200 p-8">
+      {activeTab === 0 && <LeaseCalc />}
+      {activeTab === 1 && <SpaceCalc />}
+      {activeTab === 2 && <CapRateCalc />}
+    </div>
+  )
+
+  const cta = (
+    <div className="mt-8 bg-navy-800 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <p className="text-gold text-[10px] font-bold tracking-[0.25em] uppercase mb-2">Want Expert Guidance?</p>
+        <h3 className="text-white font-bold text-lg mb-1">Talk to a Specialist</h3>
+        <p className="text-gray-400 text-sm leading-relaxed">
+          These numbers are a starting point. Our team will build a full analysis tailored to your specific situation.
+        </p>
+      </div>
+      <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+        <a
+          href="tel:7703772063"
+          className="inline-flex items-center justify-center gap-2 bg-white/10 text-white font-semibold text-sm px-5 py-3 rounded-lg hover:bg-white/15 transition-colors whitespace-nowrap"
+        >
+          (770) 377-2063
+        </a>
+        <Link
+          href="/contact"
+          className="inline-flex items-center justify-center gap-2 bg-gold text-navy-800 font-semibold text-sm px-5 py-3 rounded-lg hover:bg-gold-300 transition-colors whitespace-nowrap"
+        >
+          Schedule a Call
+        </Link>
+      </div>
+    </div>
+  )
+
+  if (unlocked) {
+    return (
+      <div>
+        {tabs}
+        {calculators}
+        {cta}
+      </div>
+    )
+  }
+
+  // Locked: show blurred calculators behind a modal overlay
+  return (
+    <div className="relative">
+      {/* Blurred background — visitor sees what they're unlocking */}
+      <div className="blur-sm pointer-events-none select-none opacity-70">
+        {tabs}
+        {calculators}
+        {cta}
+      </div>
+
+      {/* Gate modal */}
+      <div className="absolute inset-0 flex items-start justify-center pt-6 z-10">
+        <GateForm onUnlock={() => setUnlocked(true)} />
       </div>
     </div>
   )
