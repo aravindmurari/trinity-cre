@@ -4,8 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
-const GREEN_THEMES = new Set(['forest', 'grove'])
-
 const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
@@ -18,19 +16,8 @@ const navLinks = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [isGreenTheme, setIsGreenTheme] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [bannerVisible, setBannerVisible] = useState(true)
-
-  useEffect(() => {
-    const check = () => {
-      const t = localStorage.getItem('trinity-theme') ?? 'grove'
-      setIsGreenTheme(GREEN_THEMES.has(t))
-    }
-    check()
-    window.addEventListener('themechange', check)
-    return () => window.removeEventListener('themechange', check)
-  }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -41,8 +28,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled ? 'backdrop-blur-md border-white/10' : 'backdrop-blur-sm border-white/10'}`}
-      style={{ backgroundColor: scrolled ? 'color-mix(in srgb, var(--color-navy-800) 95%, transparent)' : 'color-mix(in srgb, var(--color-navy-800) 50%, transparent)' }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${scrolled ? 'backdrop-blur-md border-white/10' : 'backdrop-blur-none border-transparent'}`}
+      style={{ backgroundColor: scrolled ? 'color-mix(in srgb, var(--color-navy-800) 95%, transparent)' : 'color-mix(in srgb, var(--color-navy-800) 0%, transparent)' }}
     >
       {bannerVisible && (
         <div style={{ background: 'var(--color-navy-800)', borderBottom: '1px solid color-mix(in srgb, var(--color-gold) 30%, transparent)', padding: '5px 16px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
@@ -62,25 +49,14 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-3 flex-shrink-0">
             <div className="flex flex-col items-start gap-2 w-fit">
-              {isGreenTheme ? (
-                <Image
-                  src="/trinity-cre/logo-tcre.png"
-                  alt="Trinity CRE"
-                  width={120}
-                  height={48}
-                  className="h-10 w-auto object-contain"
-                  priority
-                />
-              ) : (
-                <Image
-                  src="/trinity-cre/logo-tcre-white.png"
-                  alt="Trinity CRE"
-                  width={140}
-                  height={56}
-                  className="h-11 w-auto object-contain"
-                  priority
-                />
-              )}
+              <Image
+                src="/trinity-cre/logo-tcre-white.png"
+                alt="Trinity CRE"
+                width={140}
+                height={56}
+                className="h-11 w-auto object-contain"
+                priority
+              />
               <div className="h-1 w-full bg-gold rounded-full" />
             </div>
           </Link>

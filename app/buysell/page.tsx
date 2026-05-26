@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function BuySellPage() {
   return (
     <>
-      <section className="bg-navy-800 py-20">
+      <section className="bg-navy-800 pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase mb-4">Get Started</p>
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">Buy or Sell</h1>

@@ -2,10 +2,6 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
-
-const GREEN_THEMES = new Set(['forest', 'grove'])
-
 const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
@@ -17,17 +13,6 @@ const navLinks = [
 ]
 
 export default function Footer() {
-  const [isGreenTheme, setIsGreenTheme] = useState(false)
-
-  useEffect(() => {
-    const check = () => {
-      const t = localStorage.getItem('trinity-theme') ?? 'grove'
-      setIsGreenTheme(GREEN_THEMES.has(t))
-    }
-    check()
-    window.addEventListener('themechange', check)
-    return () => window.removeEventListener('themechange', check)
-  }, [])
 
   return (
     <footer className="bg-navy-900 text-gray-400">
@@ -35,23 +20,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex flex-col items-start gap-2 mb-4 w-fit">
-              {isGreenTheme ? (
-                <Image
-                  src="/trinity-cre/logo-tcre.png"
-                  alt="Trinity Commercial Real Estate"
-                  width={120}
-                  height={48}
-                  className="h-10 w-auto object-contain"
-                />
-              ) : (
-                <Image
-                  src="/trinity-cre/logo-tcre-white.png"
-                  alt="Trinity Commercial Real Estate"
-                  width={140}
-                  height={56}
-                  className="h-11 w-auto object-contain"
-                />
-              )}
+              <Image
+                src="/trinity-cre/logo-tcre-white.png"
+                alt="Trinity Commercial Real Estate"
+                width={140}
+                height={56}
+                className="h-11 w-auto object-contain"
+              />
               <div className="h-1 w-full bg-gold rounded-full" />
             </div>
             <p className="text-sm leading-relaxed mb-4">

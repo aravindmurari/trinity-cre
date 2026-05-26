@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function InsightsPage() {
   return (
     <>
-      <section className="bg-navy-800 py-20">
+      <section className="bg-navy-800 pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-gold font-bold text-xs tracking-widest uppercase mb-4">
             Trinity Commercial Real Estate

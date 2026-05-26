@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist } from 'next/font/google'
+import { Geist, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -8,6 +8,7 @@ import ChatBot from '@/components/ChatBot'
 import PasscodeGate from '@/components/PasscodeGate'
 
 const geist = Geist({ subsets: ['latin'] })
+const playfair = Playfair_Display({ subsets: ['latin'], weight: ['400', '600', '700'], variable: '--font-playfair' })
 
 export const metadata: Metadata = {
   title: {
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={geist.className} suppressHydrationWarning>
+    <html lang="en" className={`${geist.className} ${playfair.variable}`} suppressHydrationWarning>
       <head>
         {/* Restore saved theme before first paint to prevent flash */}
         <script

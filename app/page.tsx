@@ -15,13 +15,13 @@ export default function HomePage() {
       {/* Stats strip */}
       <section className="bg-navy-700/80 backdrop-blur-sm border-y border-navy-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10 text-sm text-gray-300 text-center">
+          <div className="hidden sm:flex items-center justify-center gap-10 text-sm text-gray-300 text-center">
             <span>38 Years of Trinity CRE Legacy</span>
-            <span className="hidden sm:block text-navy-600">|</span>
+            <span className="text-navy-600">|</span>
             <span>Industrial Asset Class Specialist</span>
-            <span className="hidden sm:block text-navy-600">|</span>
+            <span className="text-navy-600">|</span>
             <span>Greater Atlanta Metro</span>
-            <span className="hidden sm:block text-navy-600">|</span>
+            <span className="text-navy-600">|</span>
             <span>KW Commercial</span>
           </div>
         </div>
@@ -30,52 +30,43 @@ export default function HomePage() {
       {/* About Trinity CRE */}
       <section className="bg-navy-900 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-5" style={{ minHeight: 580 }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: 560 }}>
 
             {/* Content */}
-            <div className="lg:col-span-3 flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-20 relative">
-              <span className="absolute right-0 top-1/2 -translate-y-1/2 text-[10rem] font-bold text-white/[0.03] select-none pointer-events-none leading-none hidden lg:block">
-                TCRE
-              </span>
+            <div className="flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-20">
               <p className="text-gold text-[11px] font-bold tracking-[0.25em] uppercase mb-6">
                 About Trinity Commercial Real Estate
               </p>
-              <h2 className="text-4xl lg:text-5xl font-bold text-white leading-[1.1] mb-6">
-                Data-Driven.<br />
-                <em className="text-gold not-italic">Locally Rooted.</em><br />
-                Industrially Focused.
+              <h2 className="text-white leading-tight mb-6" style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 600 }}>
+                38 Years in the Market.<br />A New Kind of Expertise.
               </h2>
-              <p className="text-gray-400 leading-relaxed mb-10 max-w-lg" style={{ fontSize: 15 }}>
-                Burke brings a rare analytical edge to commercial real estate. A background in biological engineering
-                and healthcare informatics means every deal is built on data and precision, not just intuition.
+              <p className="text-white/55 leading-relaxed mb-10 max-w-lg" style={{ fontSize: 15 }}>
+                Trinity CRE brings 38 years of Atlanta market relationships to every engagement. Burke approaches real estate the way his background in engineering and informatics taught him to approach any problem -- methodically, with the numbers in front of him, not just a handshake and a gut feeling.
               </p>
-              <div className="flex gap-10 mb-10 pt-8 border-t border-white/10">
+              <div className="flex gap-8 mb-10 pt-8 border-t border-white/10">
                 <div>
                   <div className="text-3xl font-bold text-gold">38</div>
-                  <div className="text-[10px] text-gray-500 uppercase tracking-widest mt-1.5">Years of Legacy</div>
+                  <div className="text-[10px] text-white/35 uppercase tracking-widest mt-1.5">Years of Legacy</div>
                 </div>
-                <div className="border-l border-white/10 pl-10">
-                  <div className="text-xl font-bold text-white leading-none">ATL</div>
-                  <div className="text-[10px] text-gray-500 uppercase tracking-widest mt-1.5">Industrial Market</div>
+                <div className="border-l border-white/10 pl-8">
+                  <div className="text-lg font-bold text-white leading-none">3</div>
+                  <div className="text-[10px] text-white/35 uppercase tracking-widest mt-1.5">Service Areas</div>
                 </div>
-                <div className="border-l border-white/10 pl-10">
-                  <div className="text-xl font-bold text-white leading-none">KW</div>
-                  <div className="text-[10px] text-gray-500 uppercase tracking-widest mt-1.5">Commercial</div>
+                <div className="border-l border-white/10 pl-8">
+                  <div className="text-lg font-bold text-white leading-none">ATL</div>
+                  <div className="text-[10px] text-white/35 uppercase tracking-widest mt-1.5">Metro Focus</div>
                 </div>
               </div>
               <Link
                 href="/about"
                 className="inline-flex items-center gap-2 bg-gold text-navy-900 font-semibold px-6 py-3 rounded text-sm hover:opacity-90 transition-opacity self-start"
               >
-                About Us
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                About Burke &amp; Trinity CRE →
               </Link>
             </div>
 
-            {/* Photo — bleeds to right edge */}
-            <div className="hidden lg:block lg:col-span-2 relative">
+            {/* Photo with card overlay */}
+            <div className="hidden lg:flex relative items-end p-10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80"
@@ -83,7 +74,21 @@ export default function HomePage() {
                 className="absolute inset-0 w-full h-full object-cover object-top"
               />
               <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-navy-900 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-navy-900/70 to-transparent" />
+              <div className="absolute inset-0 bg-black/20" />
+              {/* Name card */}
+              <div className="relative z-10 w-full" style={{
+                background: 'rgba(255,255,255,0.07)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255,255,255,0.15)',
+                borderTop: '2px solid var(--color-gold)',
+                borderRadius: '4px',
+                padding: '16px 20px',
+              }}>
+                <p className="text-gold text-[10px] font-bold tracking-[0.2em] uppercase mb-1">Burke Doggett</p>
+                <p className="text-white font-semibold text-sm">Commercial Real Estate Specialist</p>
+                <p className="text-white/45 text-xs mt-1">KW Commercial · Peachtree Corners, GA</p>
+              </div>
             </div>
 
           </div>
@@ -249,10 +254,10 @@ export default function HomePage() {
             <div className="lg:col-span-2">
               <p className="text-gold text-[11px] font-bold tracking-widest uppercase mb-4">Get in Touch</p>
               <h2 className="text-3xl font-bold text-navy-800 leading-snug mb-4">
-                Ready to Find Your Next Industrial Space?
+                Let&apos;s Talk About Your Next Move.
               </h2>
               <p className="text-gray-500 text-sm leading-relaxed mb-8">
-                Whether you are a tenant, buyer, or investor, we are here to help. Reach out directly or fill out the form and we will be in touch within one business day.
+                Whether you are finding space, listing a property, or evaluating an investment -- reach out directly or fill out the form and we will be in touch within one business day.
               </p>
               <div className="flex flex-col gap-3 items-start">
                 <a

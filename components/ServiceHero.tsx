@@ -1,220 +1,169 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-const PANELS = [
-  {
-    id: 'tenant-rep',
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80',
-    ghost: 'Tenant\nRep',
-    label: 'FIND YOUR SPACE',
-    title: 'Tenant\nRepresentation',
-    body: 'Finding the right industrial space for your business. We negotiate leases on your behalf — no conflict of interest, ever.',
-    cta: 'Learn more',
-    href: '/services#tenant-rep',
-  },
+const IMAGES = [
+  'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80', // office interior
+  'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1600&q=80',    // warehouse
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80', // aerial commercial
+]
+
+const SERVICES = [
   {
     id: 'industrial',
-    image: 'https://images.unsplash.com/photo-1553413077-190dd305871c?w=1600&q=80',
-    ghost: 'Industrial',
-    label: 'MARKET INTELLIGENCE',
+    label: 'INDUSTRIAL',
     title: 'Industrial',
-    body: "Atlanta's industrial market moves fast. Warehouse, distribution, flex — we bring local expertise and data-driven strategy to every deal.",
-    cta: 'Learn more',
+    roles: 'Tenants · Landlords',
     href: '/listings',
   },
   {
+    id: 'office',
+    label: 'OFFICE SPACE',
+    title: 'Office Space',
+    roles: 'Tenants · Landlords',
+    href: '/services',
+  },
+  {
     id: 'investment',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&q=80',
-    ghost: 'Investment\nSales',
-    label: 'MAXIMIZE VALUE',
-    title: 'Investment\nSales',
-    body: 'Acquire and divest industrial assets at maximum value. We connect qualified capital with the right Greater Atlanta opportunities.',
-    cta: 'Learn more',
+    label: 'INVESTMENT SALES',
+    title: 'Investment Sales',
+    roles: 'Buyers · Sellers',
     href: '/services#investment-sales',
   },
 ]
 
-const INTERVAL = 5000
-
 export default function ServiceHero() {
-  const [active, setActive] = useState(1)
-  const [progress, setProgress] = useState(0)
-
-  const advance = useCallback(() => {
-    setActive((p) => (p + 1) % PANELS.length)
-    setProgress(0)
-  }, [])
+  const [active, setActive] = useState(0)
 
   useEffect(() => {
-    const tick = setInterval(() => {
-      setProgress((p) => {
-        if (p >= 100) { advance(); return 0 }
-        return p + (100 / (INTERVAL / 100))
-      })
-    }, 100)
-    return () => clearInterval(tick)
-  }, [advance])
-
-  function handlePanelClick(i: number) {
-    setActive(i)
-    setProgress(0)
-  }
+    const timer = setInterval(() => {
+      setActive((i) => (i + 1) % IMAGES.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
 
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden">
+    <section className="relative flex flex-col sm:h-screen">
 
-      {/* Full-bleed background images — crossfade on active change */}
-      {PANELS.map((panel, i) => (
+      {/* Rotating background images */}
+      {IMAGES.map((src, i) => (
         <div
-          key={panel.id}
-          className="absolute inset-0 transition-opacity duration-700"
+          key={src}
+          className="absolute inset-0 transition-opacity duration-1000"
           style={{ opacity: i === active ? 1 : 0 }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={panel.image}
+            src={src}
             alt=""
-            className="w-full h-full object-cover transition-all duration-500"
+            className="w-full h-full object-cover"
             style={{ filter: 'var(--hero-img-filter)' }}
             draggable={false}
           />
         </div>
       ))}
+      <div className="absolute inset-0 bg-black/55" />
+      <div className="absolute inset-0" style={{ background: 'var(--hero-tint)' }} />
 
-      {/* Overall dark tint */}
-      <div className="absolute inset-0 bg-black/35" />
-      {/* Theme tint — green for TCRE brand themes, transparent otherwise */}
-      <div className="absolute inset-0 transition-colors duration-500" style={{ background: 'var(--hero-tint)' }} />
-
-      {/* ── DESKTOP: 3 panels side by side, centered, not full width ── */}
-      <div className="hidden sm:flex absolute inset-0 items-center justify-center z-20 px-4">
-        <div className="flex w-full" style={{ maxWidth: 960, height: 440 }}>
-          {PANELS.map((panel, i) => {
-            const isActive = i === active
-            return (
-              <button
-                key={panel.id}
-                onClick={() => handlePanelClick(i)}
-                className="relative flex-1 flex flex-col justify-between p-8 cursor-pointer text-left transition-all duration-500"
-                style={{
-                  border: '1px solid rgba(255,255,255,0.25)',
-                  marginLeft: i > 0 ? -1 : 0,
-                  background: isActive ? 'var(--panel-active)' : 'rgba(0,0,0,0.12)',
-                  backdropFilter: isActive ? 'blur(6px)' : 'none',
-                  zIndex: isActive ? 1 : 0,
-                }}
-              >
-                {isActive ? (
-                  <div className="flex flex-col h-full animate-fadeIn">
-                    <div>
-                      <p className="text-white/70 text-xs font-semibold tracking-[0.25em] uppercase mb-3">
-                        {panel.label}
-                      </p>
-                      <h2 className="text-3xl lg:text-4xl font-bold italic text-white leading-tight mb-4">
-                        {panel.title.split('\n').map((line, j) => (
-                          <span key={j} className="block">{line}</span>
-                        ))}
-                      </h2>
-                      <p className="text-white/75 text-sm leading-relaxed max-w-[240px]">
-                        {panel.body}
-                      </p>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <Link
-                        href={panel.href}
-                        onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-1.5 text-white text-sm font-semibold italic hover:text-gold transition-colors group"
-                      >
-                        {panel.cta}
-                        <span className="transition-transform group-hover:translate-x-1">→</span>
-                      </Link>
-                      <div className="h-px w-8 bg-white/20 overflow-hidden">
-                        <span className="block h-full bg-gold transition-none" style={{ width: `${progress}%` }} />
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex items-start h-full">
-                    <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
-                      {panel.ghost.split('\n').map((line, j) => (
-                        <span key={j} className="block">{line}</span>
-                      ))}
-                    </h2>
-                  </div>
-                )}
-              </button>
-            )
-          })}
-        </div>
+      {/* Headline — centered in upper area */}
+      <div className="flex-1 flex flex-col items-center justify-center relative z-10 text-center px-4 py-20 sm:py-0">
+        <p style={{
+          color: 'var(--color-gold)',
+          fontSize: '11px',
+          fontWeight: 700,
+          letterSpacing: '0.3em',
+          textTransform: 'uppercase',
+          marginBottom: '16px',
+        }}>
+          Greater Atlanta
+        </p>
+        <h1 style={{
+          fontFamily: 'var(--font-playfair)',
+          color: '#ffffff',
+          fontSize: 'clamp(26px, 2.8vw, 42px)',
+          fontWeight: 600,
+          fontStyle: 'normal',
+          letterSpacing: '0.02em',
+          lineHeight: 1.15,
+          margin: '0 0 16px',
+        }}>
+          Commercial Real Estate
+        </h1>
+        <p style={{
+          color: 'rgba(255,255,255,0.55)',
+          fontSize: '13px',
+          letterSpacing: '0.15em',
+          textTransform: 'uppercase',
+          margin: 0,
+        }}>
+          Industrial · Office Space · Investment Sales
+        </p>
       </div>
 
-      {/* ── MOBILE: one panel at a time, centered, not full width ── */}
-      <div className="flex sm:hidden absolute inset-0 items-center justify-center z-20 px-8">
-        {PANELS.map((panel, i) =>
-          i !== active ? null : (
-            <div
-              key={panel.id}
-              className="flex flex-col justify-between w-full animate-fadeIn"
+      {/* Static service cards — anchored to bottom */}
+      <div className="relative z-10 px-4 pb-10 sm:pb-14">
+        <div
+          className="mx-auto grid grid-cols-1 sm:grid-cols-3 gap-3"
+          style={{ maxWidth: 900 }}
+        >
+          {SERVICES.map((svc) => (
+            <Link
+              key={svc.id}
+              href={svc.href}
+              className="group flex flex-col justify-between p-6 transition-colors duration-300"
               style={{
-                maxWidth: 320,
-                height: 380,
-                border: '1px solid rgba(255,255,255,0.25)',
-                background: 'var(--panel-active)',
-                backdropFilter: 'blur(6px)',
-                padding: '1.75rem',
+                background: 'rgba(255,255,255,0.08)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255,255,255,0.2)',
+                borderTop: '2px solid var(--color-gold)',
+                borderRadius: '4px',
+                minHeight: '150px',
               }}
             >
               <div>
-                <p className="text-white/70 text-xs font-semibold tracking-[0.25em] uppercase mb-3">
-                  {panel.label}
+                <p style={{
+                  color: 'var(--color-gold)',
+                  fontSize: '10px',
+                  fontWeight: 700,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  marginBottom: '8px',
+                }}>
+                  {svc.label}
                 </p>
-                <h2 className="text-2xl font-bold italic text-white leading-tight mb-3">
-                  {panel.title.split('\n').map((line, j) => (
-                    <span key={j} className="block">{line}</span>
-                  ))}
+                <h2 style={{
+                  color: '#ffffff',
+                  fontSize: '22px',
+                  fontWeight: 700,
+                  fontStyle: 'italic',
+                  lineHeight: 1.2,
+                  margin: 0,
+                }}>
+                  {svc.title}
                 </h2>
-                <p className="text-white/75 text-sm leading-relaxed">
-                  {panel.body}
-                </p>
               </div>
-              <div className="flex items-center justify-between">
-                <Link
-                  href={panel.href}
-                  className="inline-flex items-center gap-1.5 text-white text-sm font-semibold italic hover:text-gold transition-colors group"
-                >
-                  {panel.cta}
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </Link>
-                {/* Dot navigation */}
-                <div className="flex items-center gap-2">
-                  {PANELS.map((_, di) => (
-                    <button
-                      key={di}
-                      onClick={() => handlePanelClick(di)}
-                      className="relative h-px rounded-full overflow-hidden transition-all duration-300"
-                      style={{
-                        width: di === active ? 28 : 10,
-                        background: 'rgba(255,255,255,0.25)',
-                      }}
-                      aria-label={`Panel ${di + 1}`}
-                    >
-                      {di === active && (
-                        <span
-                          className="absolute inset-y-0 left-0 bg-gold transition-none"
-                          style={{ width: `${progress}%` }}
-                        />
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )
-        )}
-      </div>
 
+              <div className="flex items-center justify-between mt-5">
+                <span style={{
+                  color: 'rgba(255,255,255,0.4)',
+                  fontSize: '11px',
+                  letterSpacing: '0.04em',
+                }}>
+                  {svc.roles}
+                </span>
+                <span
+                  className="text-white group-hover:text-gold transition-colors"
+                  style={{ fontSize: '13px', fontWeight: 600, fontStyle: 'italic' }}
+                >
+                  Explore →
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
     </section>
   )
 }
