@@ -1,5 +1,4 @@
 import ChatBotInline from '@/components/ChatBotInline'
-import AiBotPanel from '@/components/AiBotPanel'
 
 export const metadata = {
   title: 'Bot Demo — Trinity CRE',
@@ -33,7 +32,7 @@ function PanelShell({
       </div>
 
       {/* Chat area */}
-      <div className="flex-1 bg-white rounded-b-2xl border border-t-0 border-gray-200 overflow-hidden flex flex-col">
+      <div className="flex-1 min-h-0 rounded-b-2xl overflow-hidden">
         {children}
       </div>
     </div>
@@ -70,7 +69,9 @@ export default function DemoPage() {
             tagColor="bg-blue-500/20 text-blue-300"
             description="Menu-driven decision tree. Guides users to contact or listings in 3–4 taps. Zero running cost, works offline."
           >
-            <ChatBotInline />
+            <div className="bg-white h-full flex flex-col">
+              <ChatBotInline />
+            </div>
           </PanelShell>
 
           <PanelShell
@@ -79,7 +80,11 @@ export default function DemoPage() {
             tagColor="bg-gold/20 text-gold"
             description="Free-text conversation powered by Claude. Answers market questions, references listings, and earns the CTA through dialogue."
           >
-            <AiBotPanel />
+            <iframe
+              src="/trinity-cre/chat/"
+              className="w-full h-full border-0"
+              title="Trinity CRE AI Bot"
+            />
           </PanelShell>
 
         </div>
