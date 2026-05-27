@@ -54,7 +54,6 @@ export default function DemoPage() {
           <h1 className="text-2xl font-bold text-white mb-2">Bot Comparison</h1>
           <p className="text-gray-400 text-sm max-w-xl">
             Try both chat experiences and compare how they handle the same questions.
-            The AI bot requires the backend running locally on port 8002.
           </p>
         </div>
       </div>
@@ -81,7 +80,7 @@ export default function DemoPage() {
             description="Free-text conversation powered by Claude. Answers market questions, references listings, and earns the CTA through dialogue."
           >
             <iframe
-              src="/trinity-cre/chat/"
+              src="https://aravindmurari.github.io/trinity-cre-bot/"
               className="w-full h-full border-0"
               title="Trinity CRE AI Bot"
             />
