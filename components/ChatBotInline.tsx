@@ -10,88 +10,156 @@ interface Step {
 }
 
 const STEPS: Record<string, Step> = {
+
+  // ── Entry ──────────────────────────────────────────────────────────────────
   start: {
     message: "Hi there! I'm Trinity CRE's virtual assistant. How can I help you today?",
     options: [
-      { label: 'Find space to lease',  next: 'lease_1'  },
-      { label: 'Buy a property',       next: 'buy_1'    },
-      { label: 'Explore investments',  next: 'invest_1' },
-      { label: 'Talk to someone',      next: 'direct'   },
+      { label: 'Find space for my business',        next: 'need_space'   },
+      { label: 'I have a property to list or sell', next: 'own_property' },
+      { label: 'Explore investment opportunities',  next: 'invest_1'     },
+      { label: 'Talk to someone directly',          next: 'direct'       },
     ],
   },
-  lease_1: {
-    message: 'What size space are you looking for?',
+
+  // ── Tenant paths ───────────────────────────────────────────────────────────
+  need_space: {
+    message: 'What type of space are you looking for?',
     options: [
-      { label: 'Under 10,000 SF',    next: 'lease_2' },
-      { label: '10,000 – 50,000 SF', next: 'lease_2' },
-      { label: '50,000 – 100,000 SF',next: 'lease_2' },
-      { label: '100,000+ SF',        next: 'lease_2' },
+      { label: 'Industrial / warehouse / flex', next: 'ind_size' },
+      { label: 'Office space',                  next: 'off_size' },
     ],
   },
-  lease_2: {
-    message: 'Which area of Atlanta are you targeting?',
+
+  ind_size: {
+    message: 'What size space do you need?',
     options: [
-      { label: 'North — Gwinnett / I-985',     next: 'lease_3' },
-      { label: 'Northwest — Cobb / Kennesaw',  next: 'lease_3' },
-      { label: 'South — Airport / Clayton',    next: 'lease_3' },
-      { label: 'I-285 Perimeter',              next: 'lease_3' },
-      { label: 'Not sure yet',                 next: 'lease_3' },
+      { label: 'Under 10,000 SF',     next: 'ind_area' },
+      { label: '10,000 – 50,000 SF',  next: 'ind_area' },
+      { label: '50,000 – 150,000 SF', next: 'ind_area' },
+      { label: '150,000+ SF',         next: 'ind_area' },
     ],
   },
-  lease_3: {
-    message: "We have active listings across Atlanta's industrial submarkets. Would you like to connect with a specialist or browse listings?",
+  ind_area: {
+    message: 'Which Atlanta submarket are you targeting?',
     options: [
-      { label: 'Connect with a specialist', next: 'end_contact'  },
-      { label: 'View current listings',     next: 'end_listings' },
+      { label: 'North — Gwinnett / I-985',    next: 'ind_cta' },
+      { label: 'Northwest — Cobb / Kennesaw', next: 'ind_cta' },
+      { label: 'South — Airport / Clayton',   next: 'ind_cta' },
+      { label: 'I-20 East or West',           next: 'ind_cta' },
+      { label: 'Not sure yet',                next: 'ind_cta' },
     ],
   },
-  buy_1: {
-    message: 'Are you buying for your own business or as an investment?',
+  ind_cta: {
+    message: "We have active listings and off-market options across Atlanta's industrial submarkets. Ready to connect?",
     options: [
-      { label: 'For my business',    next: 'buy_2'    },
-      { label: 'Investment property', next: 'invest_1' },
+      { label: 'Talk to a specialist',    next: 'end_contact'  },
+      { label: 'Browse current listings', next: 'end_listings' },
     ],
   },
-  buy_2: {
-    message: 'What property size are you targeting?',
+
+  off_size: {
+    message: 'How much office space are you looking for?',
     options: [
-      { label: 'Under 25,000 SF',    next: 'buy_3' },
-      { label: '25,000 – 75,000 SF', next: 'buy_3' },
-      { label: '75,000+ SF',         next: 'buy_3' },
+      { label: 'Under 2,500 SF',    next: 'off_area' },
+      { label: '2,500 – 7,500 SF',  next: 'off_area' },
+      { label: '7,500 – 20,000 SF', next: 'off_area' },
+      { label: '20,000+ SF',        next: 'off_area' },
     ],
   },
-  buy_3: {
-    message: 'Trinity CRE specializes in industrial acquisitions across Greater Atlanta. We can help you identify and negotiate the right property.',
+  off_area: {
+    message: 'Which area of Greater Atlanta?',
     options: [
-      { label: 'Talk to a specialist',     next: 'end_contact'  },
-      { label: 'See available properties', next: 'end_listings' },
+      { label: 'Gwinnett / Peachtree Corners',   next: 'off_cta' },
+      { label: 'North Fulton / Alpharetta',      next: 'off_cta' },
+      { label: 'Cobb / Marietta',                next: 'off_cta' },
+      { label: 'Midtown / Buckhead / Perimeter', next: 'off_cta' },
+      { label: 'Not sure yet',                   next: 'off_cta' },
     ],
   },
+  off_cta: {
+    message: "We represent tenants finding the right office environment and negotiate lease terms that protect your business long-term.",
+    options: [
+      { label: 'Talk to a specialist',    next: 'end_contact'  },
+      { label: 'Browse current listings', next: 'end_listings' },
+    ],
+  },
+
+  // ── Landlord / seller paths ────────────────────────────────────────────────
+  own_property: {
+    message: 'Are you looking to lease your property to a tenant, or sell it?',
+    options: [
+      { label: 'Lease it — find tenants', next: 'landlord_type' },
+      { label: 'Sell it',                 next: 'seller_type'   },
+    ],
+  },
+
+  landlord_type: {
+    message: 'What type of property do you have?',
+    options: [
+      { label: 'Industrial / warehouse / flex', next: 'landlord_cta' },
+      { label: 'Office space',                  next: 'landlord_cta' },
+    ],
+  },
+  landlord_cta: {
+    message: "We handle pricing, marketing, tenant outreach, and lease execution — from first showing to signed lease.",
+    options: [
+      { label: 'Discuss my property', next: 'end_contact' },
+      { label: 'Call (770) 377-2063', next: 'end_phone'   },
+    ],
+  },
+
+  seller_type: {
+    message: 'What type of property?',
+    options: [
+      { label: 'Industrial / warehouse', next: 'seller_cta' },
+      { label: 'Office',                 next: 'seller_cta' },
+      { label: 'Other commercial',       next: 'seller_cta' },
+    ],
+  },
+  seller_cta: {
+    message: "We'll price, position, and market to the right buyer pool — investor or owner-user — to get you the best outcome.",
+    options: [
+      { label: 'Get a market valuation', next: 'end_contact' },
+      { label: 'Call (770) 377-2063',    next: 'end_phone'   },
+    ],
+  },
+
+  // ── Investment paths ───────────────────────────────────────────────────────
   invest_1: {
+    message: 'Are you looking to acquire or divest a commercial property?',
+    options: [
+      { label: 'Acquire an investment property', next: 'invest_buy_range' },
+      { label: 'Sell / divest a property',       next: 'invest_sell_cta' },
+    ],
+  },
+
+  invest_buy_range: {
     message: 'What is your target investment range?',
     options: [
-      { label: 'Under $2M',  next: 'invest_2' },
-      { label: '$2M – $5M',  next: 'invest_2' },
-      { label: '$5M – $10M', next: 'invest_2' },
-      { label: '$10M+',      next: 'invest_2' },
+      { label: 'Under $2M',  next: 'invest_buy_cta' },
+      { label: '$2M – $5M',  next: 'invest_buy_cta' },
+      { label: '$5M – $10M', next: 'invest_buy_cta' },
+      { label: '$10M+',      next: 'invest_buy_cta' },
     ],
   },
-  invest_2: {
-    message: 'What type of opportunity interests you?',
+  invest_buy_cta: {
+    message: "We source on- and off-market deals, run the underwriting, and guide you through due diligence and closing.",
     options: [
-      { label: 'NNN / Single-tenant', next: 'invest_3' },
-      { label: 'Multi-tenant',        next: 'invest_3' },
-      { label: 'Value-add',           next: 'invest_3' },
-      { label: 'Open to all',         next: 'invest_3' },
+      { label: 'Talk to an advisor',        next: 'end_contact'  },
+      { label: 'View available properties', next: 'end_listings' },
     ],
   },
-  invest_3: {
-    message: 'Trinity CRE has deep experience in Atlanta industrial investment sales. Let us help you source and underwrite the right deal.',
+
+  invest_sell_cta: {
+    message: "Timing, pricing, and targeting the right buyer are what drive your outcome. Let's talk about your asset.",
     options: [
-      { label: 'Talk to an advisor',       next: 'end_contact'  },
-      { label: 'View investment listings', next: 'end_listings' },
+      { label: 'Get a market valuation', next: 'end_contact' },
+      { label: 'Call (770) 377-2063',    next: 'end_phone'   },
     ],
   },
+
+  // ── Direct contact ─────────────────────────────────────────────────────────
   direct: {
     message: 'The fastest ways to reach our team:',
     options: [
@@ -99,6 +167,8 @@ const STEPS: Record<string, Step> = {
       { label: 'Send a message',      next: 'end_contact' },
     ],
   },
+
+  // ── Terminal steps ─────────────────────────────────────────────────────────
   end_contact: {
     message: 'Our team typically responds within one business day. Click below to send your message.',
     final: 'contact',
