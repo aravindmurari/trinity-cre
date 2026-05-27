@@ -19,7 +19,7 @@ function PanelShell({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex flex-col" style={{ height: 620 }}>
+    <div className="flex flex-col" style={{ height: 780 }}>
       {/* Panel header */}
       <div className="bg-navy-800 px-5 py-4 flex items-start gap-3 flex-shrink-0 rounded-t-2xl border border-navy-700">
         <span className={`text-xs font-bold px-2.5 py-1 rounded-full flex-shrink-0 mt-0.5 ${tagColor}`}>
@@ -43,7 +43,7 @@ export default function DemoPage() {
   return (
     <div className="min-h-screen bg-navy-900">
       {/* Header */}
-      <div className="bg-navy-800 border-b border-white/10 pt-20 pb-8 px-4">
+      <div className="bg-navy-800 border-b border-white/10 pt-32 pb-8 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center gap-3 mb-3">
             <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-gold/20 text-gold tracking-widest uppercase">
@@ -106,7 +106,7 @@ export default function DemoPage() {
             {
               label: 'Running cost',
               a: 'Zero',
-              b: 'Anthropic API + Pinecone (~$20-40/mo at low volume)',
+              b: 'AI infrastructure (~$5-10/mo at low volume)',
               edge: 'a',
             },
           ].map((row) => (
